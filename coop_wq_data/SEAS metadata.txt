@@ -1,0 +1,33 @@
+Shellfish Environmental Assessment Sections (SEAS) Metadata
+
+* Column 1: V is for Verified (data has been proofed and corrected)
+            0 is for un-verified data
+* Column 2: 2 digit code for shellfish harvesting area (SHA)
+* Column 3: Dilution for fecal coliform results. The Five-tube, three dilution, modified A-1 method was used for all fecal coliform results. Switched to MTEC method in September 2012
+* Column 4: Date of sampling event -- in the format yymmdd
+* Column 5: station number
+* Column 6: SHA status (open or closed). 1= open, 2= closed
+* Column 7: Time of sample collection ? format 24 hour time (hhmm)
+* Column 8: water depth in feet
+* Column 9: Surface salinity (parts per thousand) in the format xx.x
+* Column 10: Surface  temperature (degress C) in the format xx.x
+* Column 11: Surface DO (mg/L) in format xx.x
+* Column 12: Bottom salinity (parts per thousand) in the format xx.x. (Note bottom physical parameters are not taken if depth is <=2 feet.)
+* Column 13: Bottom  temperature (degress C) in the format xx.x
+* Column 14: Bottom DO (mg/L) in format xx.x
+* Column 15: wind direction in degrees
+* Column 16:  wind speed in miles/hour
+* Column 17: pH in the format x.x
+* Column 18: turbidity measured in NTU?s in the format xxx.xx. Measured in lab by a HF Scientific model BRT-15C. Switched to in situ measurements in 2016 by YSI Pro DSS unit. 
+* Column 19: fecal coliform in MPN/100 ml. 100 ml samples are collected sub-surface (1-2 feet) in sterile Whirl-Pak bags.
+* Column 20: Tide level.   Tide1 is high slack to high ebb. Tide 2 is high ebb to mid ebb. Tide 3 is mid ebb to low ebb. Tide 4 is low ebb to slack low. Tide 5 is slack low to low flood. Tide 6 is low flood to mid flood. Tide 7 is mid flood to high flood. Tide 8 is high flood to high slack.
+* Column 21: Date that samples were received and set-up by the lab for analysis (format yymmdd).
+* Column 22: Time that samples were received and set-up by the lab for analysis (24 hour time (hhmm)).
+
+
+
+
+
+
+
+
