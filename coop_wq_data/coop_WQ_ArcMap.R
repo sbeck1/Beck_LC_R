@@ -1,6 +1,6 @@
 #Need seperate year/month files to generate year/month heat maps in Arc
 
-coopwq=read.csv("Cooperator_WQ/CooperatorWaterQuality.csv")
+coopwq=read.csv("coop_wq_data/CooperatorWaterQuality.csv")
 
 #attempting to create all month/year files at once (not working)
 coopwq_y=split(coopwq,coopwq$Year)

@@ -1,5 +1,5 @@
-setwd("C:/Users/UF/Desktop/R/Biomass/2Feb2018")
-weight=read.csv("Weights_2Feb2018.csv")
+
+weight=read.csv("Oyster/Biomass/2Feb2018/Weights_2Feb2018.csv")
 
 #weight corrections to subtract tray weight
 weight$Whole_wet_wt_corr=(weight$Whole_wet_wt_g-weight$Tray_wt_g)

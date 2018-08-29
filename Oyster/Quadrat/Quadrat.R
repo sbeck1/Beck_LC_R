@@ -1,7 +1,7 @@
 rm(list=ls())
 
-jan30=read.csv("OysterData_30Jan2018_Quadrat_final.csv")
-feb16=read.csv("OysterData_16Feb2018_Quadrat_final.csv")
+jan30=read.csv("Oyster/Quadrat/OysterData_30Jan2018_Quadrat_final.csv")
+feb16=read.csv("Oyster/Quadrat/OysterData_16Feb2018_Quadrat_final.csv")
 mar2=read.csv("20180302_oyster_quadrat_SB.csv")
 quad=rbind(jan30,feb16,mar2)
 quad$Bar2=paste(quad$Locality,quad$Bar)
