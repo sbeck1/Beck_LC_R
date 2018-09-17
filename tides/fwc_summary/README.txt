@@ -1,0 +1,1 @@
+These summaries were prepared Spring 2018 to assist FWC in locating imagery for the Lone Cabbage Reef Area during the lowest possible tides.
