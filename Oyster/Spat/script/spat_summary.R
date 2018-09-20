@@ -1,11 +1,12 @@
 ### Shell Spat Collectors ###
 
-shell_spat=read.csv("oyster/spat/data/shell_spat_count.csv")
-shell_spat=shell_spat[which(shell_spat$ex_cnt>=0),]
-shell_spat$count=shell_spat$in_cnt+shell_spat$ex_cnt
+shell_spat=read.csv("oyster/spat/data/development/shell_spat_count.csv")
+shell_spat=shell_spat[which(shell_spat$ex_cnt>=0),]  #filters to include only counted collectors
+shell_spat$count=shell_spat$in_cnt+shell_spat$ex_cnt  #total spat count
+str(shell_spat)
 
-shell_bag=read.csv("oyster/spat/data/shell_spat_bag.csv")
-shell_bag2=shell_bag[which(shell_bag$status=="RETR"&shell_bag$drill_cnt>=0),]
+shell_bag=read.csv("oyster/spat/data/development/shell_spat_bag.csv")  
+shell_bag2=shell_bag[which(shell_bag$status=="RETR"&shell_bag$drill_cnt>=0),]  #filters to include only successfully retrieved collectors
 
 library (ggplot2)
 library (Rmisc) #multiplot
@@ -31,7 +32,7 @@ as.integer(shell_summary3$total)
 str(shell_summary3)
 
 ### Tile Spat Collectors ###
-tile_spat=read.csv("oyster/spat/data/tile_spat_count.csv")
+tile_spat=read.csv("oyster/spat/data/development/tile_spat_count.csv")
 tile_spat2=tile_spat[which(tile_spat$cnt>=0),]
 
 #format for merge
