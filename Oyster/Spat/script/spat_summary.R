@@ -51,6 +51,9 @@ str(tile_summary2)
 combined=merge(shell_summary2,tile_summary,by=c("station","month"))
 combined2=bind_rows(shell_summary3,tile_summary2)
 
+#determine appropriate ymax for plots
+summary(combined2$total)
+
 
 ### Plots ###
 
@@ -93,13 +96,16 @@ WQ1=ggplot(com1, aes(x=month, y=total, shape=type))+
   ylim(0,3000)+
   geom_point(size=2.5)+
   labs(title="WQ1",x="", y="")+
-  theme(legend.position="none")+
+  theme(legend.position=c(0.5,0.9),
+        legend.background=element_rect(color="black",size=0.5))+
   scale_x_discrete(limits=c("APRIL","JUNE","JULY"))
 
 WQ2=ggplot(com2, aes(x=month, y=total, shape=type))+
   ylim(0,3000)+
   geom_point(size=2.5)+
-  labs(title="WQ2",x="", y="")
+  labs(title="WQ2",x="", y="")+
+  theme(legend.position="none")+
+  scale_x_discrete(limits=c("APRIL","JUNE","JULY"))
 
 WQ3=ggplot(com3, aes(x=month, y=total, shape=type))+
   ylim(0,3000)+

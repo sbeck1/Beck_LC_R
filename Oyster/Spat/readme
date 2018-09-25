@@ -2,5 +2,10 @@ Spat Collecter Data Processing
 
 September 11, 2018:  Reformatted shell/tile spat data using final conventions where possible. Started summary scripts.
 
-September 12, 2018:  Scripts expanded to standardize shell spat collector by weight/volume and make summary graphs made for tile/spat collectors and comparisons.
-		     Need to doublecheck calculations, input coordinates/check mapping options. 
+September 12, 2018:  Scripts expanded to standardize shell spat collector by weight/volume and make summary graphs for tile/spat collectors and comparisons.
+
+September 20, 2018:  Created data entry spreadsheets
+
+September 25, 2018:  Created error check scripts
+
+Need to doublecheck calculations, input coordinates/check mapping options. 
