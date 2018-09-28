@@ -37,11 +37,11 @@ mx1_check=mx1[which(mx1$m_mm1>50),]
 
 mx2=tile[which(tile$mx_mm2>0),]
 hist(mx2$mx_mm2)
-mx2_check=mx2[which(mx2$m_mm2>50),]
+mx2_check=mx2[which(mx2$mx_mm2>50),]
 
 mx3=tile[which(tile$mx_mm3>0),]
 hist(mx3$mx_mm3)
-mx3_check=mx3[which(mx3$m_mm3>50),]
+mx3_check=mx3[which(mx3$mx_mm3>50),]
 
 ##### Barnacle check #####
 

@@ -6,7 +6,7 @@ shell_spat$count=shell_spat$in_cnt+shell_spat$ex_cnt  #total spat count
 str(shell_spat)
 
 shell_bag=read.csv("oyster/spat/data/development/shell_spat_bag.csv")  
-shell_bag2=shell_bag[which(shell_bag$status=="RETR"&shell_bag$drill_cnt>=0),]  #filters to include only successfully retrieved collectors
+shell_bag2=shell_bag[which(shell_bag$status=="RETR"&shell_bag$snail_cnt>=0),]  #filters to include only successfully retrieved collectors
 
 library (ggplot2)
 library (Rmisc) #multiplot
@@ -25,9 +25,9 @@ shell_summary2$total_kg=(shell_summary2$total/shell_summary2$t_wt_g)*1000
 shell_summary2$total_L=(shell_summary2$total/shell_summary2$t_vol_ml)*1000
 
 #format for rbind 
-shell_summary3=shell_summary2[,c(1,2,3,16)]
+shell_summary3=shell_summary2[,c(1,2,8,9,16)]
 shell_summary3$type="KG_SHELL"
-colnames(shell_summary3)[4]="total"
+colnames(shell_summary3)[5]="total"
 as.integer(shell_summary3$total)
 str(shell_summary3)
 
@@ -53,6 +53,15 @@ combined2=bind_rows(shell_summary3,tile_summary2)
 
 #determine appropriate ymax for plots
 summary(combined2$total)
+
+#add gps coordinates
+gps=read.csv("oyster/spat/data/development/wq_lc_stn.csv")
+spat_combined_utm=merge(gps,combined2,by="station")
+shell_spat_utm=spat_combined_utm[which(spat_combined_utm$type=="KG_SHELL"),]
+tile_spat_utm=spat_combined_utm[which(spat_combined_utm$type=="TILE"),]
+write.csv(shell_spat_utm,"oyster/spat/data/development/shell_spat_utm.csv")
+write.csv(tile_spat_utm,"oyster/spat/data/development/tile_spat_utm.csv")
+
 
 
 ### Plots ###
@@ -98,63 +107,63 @@ WQ1=ggplot(com1, aes(x=month, y=total, shape=type))+
   labs(title="WQ1",x="", y="")+
   theme(legend.position=c(0.5,0.9),
         legend.background=element_rect(color="black",size=0.5))+
-  scale_x_discrete(limits=c("APRIL","JUNE","JULY"))
+  scale_x_discrete(limits=c("APRIL","JUNE","JULY","AUGUST"))
 
 WQ2=ggplot(com2, aes(x=month, y=total, shape=type))+
   ylim(0,3000)+
   geom_point(size=2.5)+
   labs(title="WQ2",x="", y="")+
   theme(legend.position="none")+
-  scale_x_discrete(limits=c("APRIL","JUNE","JULY"))
+  scale_x_discrete(limits=c("APRIL","JUNE","JULY","AUGUST"))
 
 WQ3=ggplot(com3, aes(x=month, y=total, shape=type))+
   ylim(0,3000)+
   geom_point(size=2.5)+
   labs(title="WQ3",x="Month", y="")+
   theme(legend.position="none")+
-  scale_x_discrete(limits=c("APRIL","JUNE","JULY"))
+  scale_x_discrete(limits=c("APRIL","JUNE","JULY","AUGUST"))
 
 WQ4=ggplot(com4, aes(x=month, y=total, shape=type))+
   ylim(0,3000)+
   geom_point(size=2.5)+
   labs(title="WQ4",x="", y="")+
   theme(legend.position="none")+
-  scale_x_discrete(limits=c("APRIL","JUNE","JULY"))
+  scale_x_discrete(limits=c("APRIL","JUNE","JULY","AUGUST"))
 
 WQ5=ggplot(com5, aes(x=month, y=total, shape=type))+
   ylim(0,3000)+
   geom_point(size=2.5)+
   labs(title="WQ5",x="", y="Total Spat")+
   theme(legend.position="none")+
-  scale_x_discrete(limits=c("APRIL","JUNE","JULY"))
+  scale_x_discrete(limits=c("APRIL","JUNE","JULY","AUGUST"))
 
 WQ6=ggplot(com6, aes(x=month, y=total, shape=type))+
   ylim(0,3000)+
   geom_point(size=2.5)+
   labs(title="WQ6",x="", y="")+
   theme(legend.position="none")+
-  scale_x_discrete(limits=c("APRIL","JUNE","JULY"))
+  scale_x_discrete(limits=c("APRIL","JUNE","JULY","AUGUST"))
 
 WQ7=ggplot(com7, aes(x=month, y=total, shape=type))+
   ylim(0,3000)+
   geom_point(size=2.5)+
   labs(title="WQ7",x="", y="")+
   theme(legend.position="none")+
-  scale_x_discrete(limits=c("APRIL","JUNE","JULY"))
+  scale_x_discrete(limits=c("APRIL","JUNE","JULY","AUGUST"))
 
 WQ8=ggplot(com8, aes(x=month, y=total, shape=type))+
   ylim(0,3000)+
   geom_point(size=2.5)+
   labs(title="WQ8",x="", y="")+
   theme(legend.position="none")+
-  scale_x_discrete(limits=c("APRIL","JUNE","JULY"))
+  scale_x_discrete(limits=c("APRIL","JUNE","JULY","AUGUST"))
 
 WQ9=ggplot(com9, aes(x=month, y=total, shape=type))+
   ylim(0,3000)+
   geom_point(size=2.5)+
   labs(title="WQ9",x="", y="")+
   theme(legend.position="none")+
-  scale_x_discrete(limits=c("APRIL","JUNE","JULY"))
+  scale_x_discrete(limits=c("APRIL","JUNE","JULY","AUGUST"))
 
 multiplot(WQ6,WQ5,WQ4,WQ1,WQ2,WQ3,WQ7,WQ8,WQ9,cols=3)
 dev.copy2pdf(file="oyster/spat/fig/shell_tile_spat_total.pdf")
