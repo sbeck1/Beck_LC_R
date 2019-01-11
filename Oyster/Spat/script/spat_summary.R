@@ -51,6 +51,7 @@ str(tile_summary2)
 combined=merge(shell_summary2,tile_summary,by=c("station","month"))
 combined2=bind_rows(shell_summary3,tile_summary2)
 
+
 #determine appropriate ymax for plots
 summary(combined2$total)
 
@@ -107,63 +108,63 @@ WQ1=ggplot(com1, aes(x=month, y=total, shape=type))+
   labs(title="WQ1",x="", y="")+
   theme(legend.position=c(0.5,0.9),
         legend.background=element_rect(color="black",size=0.5))+
-  scale_x_discrete(limits=c("APRIL","JUNE","JULY","AUGUST"))
+  scale_x_discrete(limits=c("APRIL","JUNE","JULY","AUGUST","SEPTEMBER","OCTOBER","NOVEMBER","DECEMBER"))
 
 WQ2=ggplot(com2, aes(x=month, y=total, shape=type))+
   ylim(0,3000)+
   geom_point(size=2.5)+
   labs(title="WQ2",x="", y="")+
   theme(legend.position="none")+
-  scale_x_discrete(limits=c("APRIL","JUNE","JULY","AUGUST"))
+  scale_x_discrete(limits=c("APRIL","JUNE","JULY","AUGUST","SEPTEMBER","OCTOBER","NOVEMBER","DECEMBER"))
 
 WQ3=ggplot(com3, aes(x=month, y=total, shape=type))+
   ylim(0,3000)+
   geom_point(size=2.5)+
   labs(title="WQ3",x="Month", y="")+
   theme(legend.position="none")+
-  scale_x_discrete(limits=c("APRIL","JUNE","JULY","AUGUST"))
+  scale_x_discrete(limits=c("APRIL","JUNE","JULY","AUGUST","SEPTEMBER","OCTOBER","NOVEMBER","DECEMBER"))
 
 WQ4=ggplot(com4, aes(x=month, y=total, shape=type))+
   ylim(0,3000)+
   geom_point(size=2.5)+
   labs(title="WQ4",x="", y="")+
   theme(legend.position="none")+
-  scale_x_discrete(limits=c("APRIL","JUNE","JULY","AUGUST"))
+  scale_x_discrete(limits=c("APRIL","JUNE","JULY","AUGUST","SEPTEMBER","OCTOBER","NOVEMBER","DECEMBER"))
 
 WQ5=ggplot(com5, aes(x=month, y=total, shape=type))+
   ylim(0,3000)+
   geom_point(size=2.5)+
   labs(title="WQ5",x="", y="Total Spat")+
   theme(legend.position="none")+
-  scale_x_discrete(limits=c("APRIL","JUNE","JULY","AUGUST"))
+  scale_x_discrete(limits=c("APRIL","JUNE","JULY","AUGUST","SEPTEMBER","OCTOBER","NOVEMBER","DECEMBER"))
 
 WQ6=ggplot(com6, aes(x=month, y=total, shape=type))+
   ylim(0,3000)+
   geom_point(size=2.5)+
   labs(title="WQ6",x="", y="")+
   theme(legend.position="none")+
-  scale_x_discrete(limits=c("APRIL","JUNE","JULY","AUGUST"))
+  scale_x_discrete(limits=c("APRIL","JUNE","JULY","AUGUST","SEPTEMBER","OCTOBER","NOVEMBER","DECEMBER"))
 
 WQ7=ggplot(com7, aes(x=month, y=total, shape=type))+
   ylim(0,3000)+
   geom_point(size=2.5)+
   labs(title="WQ7",x="", y="")+
   theme(legend.position="none")+
-  scale_x_discrete(limits=c("APRIL","JUNE","JULY","AUGUST"))
+  scale_x_discrete(limits=c("APRIL","JUNE","JULY","AUGUST","SEPTEMBER","OCTOBER","NOVEMBER","DECEMBER"))
 
 WQ8=ggplot(com8, aes(x=month, y=total, shape=type))+
   ylim(0,3000)+
   geom_point(size=2.5)+
   labs(title="WQ8",x="", y="")+
   theme(legend.position="none")+
-  scale_x_discrete(limits=c("APRIL","JUNE","JULY","AUGUST"))
+  scale_x_discrete(limits=c("APRIL","JUNE","JULY","AUGUST","SEPTEMBER","OCTOBER","NOVEMBER","DECEMBER"))
 
 WQ9=ggplot(com9, aes(x=month, y=total, shape=type))+
   ylim(0,3000)+
   geom_point(size=2.5)+
   labs(title="WQ9",x="", y="")+
   theme(legend.position="none")+
-  scale_x_discrete(limits=c("APRIL","JUNE","JULY","AUGUST"))
+  scale_x_discrete(limits=c("APRIL","JUNE","JULY","AUGUST","SEPTEMBER","OCTOBER","NOVEMBER","DECEMBER"))
 
 multiplot(WQ6,WQ5,WQ4,WQ1,WQ2,WQ3,WQ7,WQ8,WQ9,cols=3)
 dev.copy2pdf(file="oyster/spat/fig/shell_tile_spat_total.pdf")
