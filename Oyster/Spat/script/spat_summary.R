@@ -53,7 +53,7 @@ combined2=bind_rows(shell_summary3,tile_summary2)
 mo2num=function(x) match(tolower(x),tolower(month.name))  #month name to month number
 combined2$month_num=mo2num(combined2$month)
 
-combined2=combined2[which(combined2$month_num>=8),]
+#combined2=combined2[which(combined2$month_num>=8),]
 
 #determine appropriate ymax for plots
 summary(combined2$total)
@@ -106,71 +106,72 @@ com8=combined2[which(combined2$station=="WQ8"),]
 com9=combined2[which(combined2$station=="WQ9"),]
 
 WQ1=ggplot(com1, aes(x=month_num, y=total, shape=type))+
-  ylim(0,300)+
+  ylim(0,3000)+
   geom_point(size=2.5)+
   labs(title="WQ1",x="", y="")+
   theme(legend.position=c(0.5,0.9),
         legend.background=element_rect(color="black",size=0.5))+
-  scale_x_discrete(limits=c(8:12))
+  scale_x_discrete(limits=c(4:12))
 
 WQ2=ggplot(com2, aes(x=month_num, y=total, shape=type))+
-  ylim(0,300)+
+  ylim(0,3000)+
   geom_point(size=2.5)+
+  expand_limits(x=4,y=0)+
   labs(title="WQ2",x="", y="")+
   theme(legend.position="none")+
-  scale_x_discrete(limits=c(8:12))
+  scale_x_discrete(limits=c(4:12))
 
 WQ3=ggplot(com3, aes(x=month_num, y=total, shape=type))+
-  ylim(0,300)+
+  ylim(0,3000)+
   geom_point(size=2.5)+
   labs(title="WQ3",x="Month", y="")+
   theme(legend.position="none")+
-  scale_x_discrete(limits=c(8:12))
+  scale_x_discrete(limits=c(4:12))
 
 WQ4=ggplot(com4, aes(x=month_num, y=total, shape=type))+
-  ylim(0,300)+
+  ylim(0,3000)+
   geom_point(size=2.5)+
   labs(title="WQ4",x="", y="")+
   theme(legend.position="none")+
-  scale_x_discrete(limits=c(8:12))
+  scale_x_discrete(limits=c(4:12))
 
 WQ5=ggplot(com5, aes(x=month_num, y=total, shape=type))+
-  ylim(0,300)+
+  ylim(0,3000)+
   geom_point(size=2.5)+
   labs(title="WQ5",x="", y="Total Spat")+
   theme(legend.position="none")+
-  scale_x_discrete(limits=c(8:12))
+  scale_x_discrete(limits=c(4:12))
 
 WQ6=ggplot(com6, aes(x=month_num, y=total, shape=type))+
-  ylim(0,300)+
+  ylim(0,3000)+
   geom_point(size=2.5)+
   labs(title="WQ6",x="", y="")+
   theme(legend.position="none")+
-  scale_x_discrete(limits=c(8:12))
+  scale_x_discrete(limits=c(4:12))
 
 WQ7=ggplot(com7, aes(x=month_num, y=total, shape=type))+
-  ylim(0,300)+
+  ylim(0,3000)+
   geom_point(size=2.5)+
   labs(title="WQ7",x="", y="")+
   theme(legend.position="none")+
-  scale_x_discrete(limits=c(8:12))
+  scale_x_discrete(limits=c(4:12))
 
 WQ8=ggplot(com8, aes(x=month_num, y=total, shape=type))+
-  ylim(0,300)+
+  ylim(0,3000)+
   geom_point(size=2.5)+
   labs(title="WQ8",x="", y="")+
   theme(legend.position="none")+
-  scale_x_discrete(limits=c(8:12))
+  scale_x_discrete(limits=c(4:12))
 
 WQ9=ggplot(com9, aes(x=month_num, y=total, shape=type))+
-  ylim(0,300)+
+  ylim(0,3000)+
   geom_point(size=2.5)+
   labs(title="WQ9",x="", y="")+
   theme(legend.position="none")+
-  scale_x_discrete(limits=c(8:12))
+  scale_x_discrete(limits=c(4:12))
 
 multiplot(WQ6,WQ5,WQ4,WQ1,WQ2,WQ3,WQ7,WQ8,WQ9,cols=3)
-dev.copy2pdf(file="oyster/spat/fig/shell_tile_spat_total_fall.pdf")
+dev.copy2pdf(file="oyster/spat/fig/shell_tile_spat_total.pdf")
 
 ### Comparison, run these 3 plots together ###
 
