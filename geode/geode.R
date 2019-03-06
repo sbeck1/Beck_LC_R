@@ -45,6 +45,6 @@ g_t_dist=rename(g_t_dist, c("station"="station1","transect"="transect1"))
 g_t_dist=rename(g_t_dist, c("NEAR_FID"="FID"))
 g_t_dist=merge(g_t_dist,g_t_spatial,by=c("FID"))
 g_t_dist=subset(g_t_dist, select=-c(FID,g_t_lng_m,utm_e_st,utm_n_st,utm_e_en,utm_n_en,wilcox_t_st_dist_m))
-g_t_dist=rename(g_t_dist, c("station"="station2","transect"="transect2"))
-g_t_dist=g_t_dist[with(g_t_dist,order(station1,transect1,NEAR_RANK)),]
+g_t_dist=rename(g_t_dist, c("NEAR_DIST"="dist_m","NEAR_RANK"="rank","station"="station2","transect"="transect2"))
+g_t_dist=g_t_dist[with(g_t_dist,order(station1,transect1,rank)),]
 write.csv(g_t_dist, "geode/g_t_dist.csv")
