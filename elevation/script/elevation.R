@@ -41,9 +41,32 @@ write.csv(e1_clean, "elevation/data/development/uf/epoch1/epoch1_elevation_clean
 #manual changes:  rename bars, remove duplicate elevation data from multiple oyster sampling trips (differing end lengths and repeat elevations)
 #notes from manual cleanup: no 2.5m segment for CKO3, CRN1 data entered twice, deleted HBO1 due to differing elevations at same tran_length between dates/no way to choose which is correct
 
-
 #final epoch 1 data:  epoch1_elevation_prod.csv
 
 
+###prep table for Arc 
+e_prod=read.csv("elevation/data/development/elevation_prod.csv")
+
+#elevation size bins/no negative values allowed
+e_neg=e_prod[which(e_prod$elev_m<=0),]
+e_neg$neg_e_abs=abs(e_neg$elev_m)
+#just postcon elevations
+
+summary(e_neg$neg_e_abs)
+
+library(FSA)
+library(magrittr)
+library(dplyr)
+library(plotrix)
+library(Matching)
+
+e_neg %<>% mutate(elev_cat=lencat(neg_e_abs,w=0.1))
+e_neg$elev_cat=-(e_neg$elev_cat)
+#just postcon elevations
+e_postcon=e_neg[which(e_neg$year>2017),]
+write.csv(e_postcon, "elevation/data/development/e_postcon.csv")
+#just epoch1 elevations
+e_epoch1=e_neg[which(e_neg$year<2011),]
+write.csv(e_epoch1, "elevation/data/development/e_epoch1.csv")
 
 

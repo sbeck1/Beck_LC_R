@@ -1,0 +1,91 @@
+Epoch,Oriiginal_Name,New_Name,Original_Station,New_Station,Easting,Northing,Treatment,Note
+1,Cedar Key Inshore,Same,CKI1,Same,300804,3227972,control,Coordinates: Transect Start
+1,Cedar Key Inshore,Same,CKI2,Same,300736,3227813,control,Coordinates: Transect Start
+1,Cedar Key Inshore,Same,CKI3,Same,300734,3228267,control,Coordinates: Transect Start
+1,Cedar Key Nearshore,Same,CKN1,Same,299767,3227182,control,Coordinates: Transect Start
+1,Cedar Key Nearshore,Same,CKN2,Same,299777,3226660,control,Coordinates: Transect Start
+1,Cedar Key Nearshore,Same,CKN3,Same,299555,3227068,control,Coordinates: Transect Start
+1,Cedar Key Offshore,Same,CKO1,Same,298326,3226099,control,Coordinates: Transect Start
+1,Cedar Key Offshore,Same,CKO2,Same,298351,3225980,control,Coordinates: Transect Start
+1,Cedar Key Offshore,Same,CKO3,Same,298392,3226055,control,Coordinates: Transect Start
+1,Corrigan's Reef Inshore,Same,CRI1,Same,306778,3228724,control,Coordinates: Transect Start
+1,Corrigan's Reef Inshore,Same,CRI2,Same,306883,3228814,control,Coordinates: Transect Start
+1,Corrigan's Reef Inshore,Same,CRI3,Same,306723,3228950,control,Coordinates: Transect Start
+1,Corrigan's Reef Nearshore,Same,CRN1,Same,306120,3227868,control,Coordinates: Transect Start
+1,Corrigan's Reef Nearshore,Same,CRN2,Same,306158,3227983,control,Coordinates: Transect Start
+1,Corrigan's Reef Nearshore,Same,CRN3,Same,306646,3228017,control,Coordinates: Transect Start
+1,Corrigan's Reef Offshore,Same,CRO1,Same,305951,3226913,control,Coordinates: Transect Start
+1,Corrigan's Reef Offshore,Same,CRO2,Same,305837,3227123,control,Coordinates: Transect Start
+1,Corrigan's Reef Offshore,Same,CRO3,Same,306388,3226866,control,Coordinates: Transect Start
+1,Corrigan's Reef Offshore,Same,CRO4,Same,,,control,
+1,Horseshoe Beach Inshore,Same,HBI1,Same,284203,3257040,control,"Sometimes referred to as HS, Coordinates:  Transect Start"
+1,Horseshoe Beach Inshore,Same,HBI2,Same,285242,3256430,control,"Sometimes referred to as HS, Coordinates:  Transect Start"
+1,Horseshoe Beach Inshore,Same,HBI3,Same,284311,3256902,control,"Sometimes referred to as HS, Coordinates:  Transect Start"
+1,Horseshoe Beach Inshore,Same,HBI4,Same,284067,3256766,control,"Sometimes referred to as HS, Coordinates:  Transect Start"
+1,Horseshoe Beach Nearshore,Same,HBN1,Same,284468,3255825,control,"Sometimes referred to as HS, Coordinates:  Transect Start"
+1,Horseshoe Beach Nearshore,Same,HBN2,Same,283586,3256287,control,"Sometimes referred to as HS, Coordinates:  Transect Start"
+1,Horseshoe Beach Nearshore,Same,HBN3,Same,283203,3256270,control,"Sometimes referred to as HS, Coordinates:  Transect Start"
+1,Horseshoe Beach Nearshore,Same,HBN5,Same,280659,3257379,control,7/7/2010 sample correct
+1,Horseshoe Beach Nearshore,Same,HBN6,Same,280182,3257594,control,"Sometimes referred to as HS, Coordinates:  Transect Start"
+1,Horseshoe Beach Offshore,Same,HBO1,Same,282938,3254310,control,"Sometimes referred to as HS, Coordinates:  Transect Start"
+1,Horseshoe Beach Offshore,Same,HBO2,Same,282263,3254820,control,"Sometimes referred to as HS, Coordinates:  Transect Start"
+1,Horseshoe Beach Offshore,Same,HBO3,Same,280813,3256105,control,"Sometimes referred to as HS, Coordinates:  Transect Start"
+1,Lone Cabbage Inshore,Same,LCI1,Same,299282,3235919,control,Coordinates: Transect Start
+1,Lone Cabbage Inshore,Same,LCI2,Same,298841,3235773,control,Coordinates: Transect Start
+1,Lone Cabbage Inshore,Same,LCI3,Same,298763,3235642,control,Coordinates: Transect Start
+1,Lone Cabbage Nearshore,Same,LCN1,Same,298380,3236557,control,Coordinates: Transect Start
+1,Lone Cabbage Nearshore,Same,LCN2,Same,298651,3236638,control,Coordinates: Transect Start
+1,Lone Cabbage Nearshore,Same,LCN3,LCN6,297907,3234553,control,Coordinates: Transect Start
+1,Lone Cabbage Nearshore,Same,LCN4,LCN3,298534,3236727,control,Coordinates: Transect Start
+1,Lone Cabbage Nearshore,Same,LCN5,LCN5,,,control,
+1,Lone Cabbage  Offshore,Lone Cabbage Offshore (plus reef element),LCO1,LCO9B,294865,3238692,control,Coordinates: Transect Start
+1,Lone Cabbage  Offshore,Lone Cabbage Offshore (plus reef element),LCO2,LCO8A,294686,3238948,control,Coordinates: Transect Start
+1,Lone Cabbage  Offshore,Lone Cabbage Offshore (plus reef element),LCO3,LCO3,294395,3239164,control,Coordinates: Transect Start
+1,Lone Cabbage  Offshore,Lone Cabbage Offshore (plus reef element),LCO8A,LCO8A,,,control,
+1,Lone Cabbage  Offshore,Lone Cabbage Offshore (plus reef element),LCO9B,LCO9B,,,control,
+2,Lone Cabbage  Offshore,Lone Cabbage Offshore (plus reef element),LCO9A,LCO9A,,,control,
+2,Lone Cabbage  Offshore,Lone Cabbage Offshore (plus reef element),LCO9C,LCO9C,,,control,
+2,Lone Cabbage  Offshore,Lone Cabbage Offshore (plus reef element),LCO8B,LCO8B,,,control,
+2,Lone Cabbage  Offshore,Lone Cabbage Offshore (plus reef element),LCO10A,LCO10A,,,control,
+2,Lone Cabbage  Offshore,Lone Cabbage Offshore (plus reef element),LCO10B,LCO10B,,,control,
+2,Lone Cabbage  Offshore,Lone Cabbage Offshore (plus reef element),LCO11A,LCO11A,,,control,
+2,Lone Cabbage  Offshore,Lone Cabbage Offshore (plus reef element),LCO11B,LCO11B,,,control,
+2,Lone Cabbage  Offshore,Lone Cabbage Offshore (plus reef element),LCO12,LCO12,297281,3233308,control,Coordinates: Transect Start
+3,Big Trout Creek Inshore,Same,BTI1,Same,297465.3091,3239361.462,control,Coordinates:  BT11
+3,Big Trout Creek Inshore,Same,BTI2,Same,297612.7519,3239507.404,control,Coordinates:  BT21
+3,Big Trout Creek Inshore,Same,BTI3,Same,297677.8958,3239398.703,control,Coordinates:  BT41
+3,Big Trout Creek Inshore,Same,BTI4,Same,297601.9606,3239173.879,control,Coordinates:  BT32
+3,Geiger Creek Inshore,Lone Cabbage Nearshore,GCI1,LCN4,298820.9868,3236639.994,control,Cooridinates: Reef Center
+3,Geiger Creek Inshore,Lone Cabbage Nearshore,GCI2,LCN5,298807.6653,3236766.619,control,Cooridinates: Reef Center
+3,Lone Cabbage Inshore,Lone Cabbage Inshore,LCI1,LCI5,298317.1677,3235753.085,control,Cooridinates: Reef Center
+3,Lone Cabbage Inshore,Lone Cabbage Inshore,LCI2,LCI6,298713.9723,3235921.241,control,Cooridinates: Reef Center
+3,Lone Cabbage Inshore,Lone Cabbage Inshore,LCI3,LCI7,298843.6606,3235996.559,control,Cooridinates: Reef Center
+3,Lone Cabbage Inshore,Lone Cabbage Inshore,LCI4,LCI3,298759.4535,3235633.29,control,Cooridinates: Reef Center
+3,Lone Cabbage Inshore,Same,LCI5,Same,298317.1677,3235753.085,control,
+3,Lone Cabbage Inshore,Same,LCI6,Same,298713.9723,3235921.241,control,
+3,Lone Cabbage Inshore,Same,LCI7,Same,298843.6606,3235996.559,control,
+3,Lone Cabbage Inshore,Same,LCN3,Same,298534,3236727,control,
+3,Lone Cabbage Inshore,Same,LCN4,Same,,,control,
+3,Lone Cabbage Offshore,Same,LCO0,Same,,,control,
+3,Pilot Project Plot 1,Lone Cabbage Offshore (plus reef element),LCO8B,Same,294705.8677,3238859.425,rock,"Sometimes referred to as LCOR or Lcrestore, Coordinates:  southeast plot corner"
+3,Lone Cabbage Offshore,Lone Cabbage Offshore (plus reef element),LCO10A,Same,,,control,
+3,Lone Cabbage Offshore,Lone Cabbage Offshore (plus reef element),LCO12,Same,295423.4442,3238074.846,control,
+3,Pilot Project Plot 2,Lone Cabbage Offshore (plus reef element),LCO2,LCO9A,294806.6659,3238782.88,rock,"Sometimes referred to as LCOR or Lcrestore, Coordinates:  southeast plot corner"
+3,,,LCO9A,Same,,,,
+3,Pilot Project Plot 3,Lone Cabbage Offshore (plus reef element),LCO3,LCO9C,294931.0727,3238656.796,control,"Sometimes referred to as LCOR or Lcrestore, Coordinates:  southeast plot corner"
+3,Pilot Project Plot 4,Lone Cabbage Offshore (plus reef element),LCO4,LCO10A,295040.4888,3238583.535,control,"Sometimes referred to as LCOR or Lcrestore, Coordinates:  southeast plot corner"
+3,Pilot Project Plot 5,Lone Cabbage Offshore (plus reef element),LCO10B,LCO10B,295141.4843,3238469.072,rock,"Sometimes referred to as LCOR or Lcrestore, Coordinates:  southeast plot corner"
+3,Pilot Project Plot 6,Lone Cabbage Offshore (plus reef element),LCO11A,LCO11A,295253.5573,3238278.465,rock,"Sometimes referred to as LCOR or Lcrestore, Coordinates:  southeast plot corner"
+3,Pilot Project Plot 7,Lone Cabbage Offshore (plus reef element),LCO11B,LCO11B,295308.5457,3238216.719,control,"Sometimes referred to as LCOR or Lcrestore, Coordinates:  southeast plot corner"
+3,Pilot Project Plot 8,Lone Cabbage Offshore (plus reef element),LCO8,LCO12,295423.4442,3238074.846,control,"Sometimes referred to as LCOR or Lcrestore, Coordinates:  southeast plot corner"
+3,Lone Cabbage Offshore,Lone Cabbage Offshore (plus reef element),LCO9C,LCO9C,294931.0727,3238656.796,control,
+3,Little Trout Creek Inshore,Same,LTI1,Same,298243.0832,3238323.22,control,Coordinates:  first segment of LTI1 transect (at start)
+3,Little Trout Creek Inshore,Same,LTI2,Same,298243.0832,3238323.22,control,Coordinates:  LTI21
+3,Little Trout Creek Inshore,Same,LTI3,Same,298339.7633,3238402.442,control,Coordinates:  LTI31
+3,Little Trout Creek Inshore,Same,LTI4,Same,298294.241,3238521.878,control,Coordinates:  LTI41
+3,Northern Lone Cabbage,Lone Cabbage Offshore (plus reef element),NLCO1,LCO2,294376.6264,3239243.883,control,Cooridinates: Reef Center
+3,Northern Lone Cabbage,Lone Cabbage Offshore (plus reef element),NLCO2,LCO4,294488.0229,3239060.042,control,Cooridinates: Reef Center
+3,Northern Lone Cabbage,Lone Cabbage Offshore (plus reef element),NLCO3,LCO0,294488.0229,3239060.042,control,Cooridinates: Reef Center
+3,No-name Creek Inshore,Same,NNI1,Same,298530.7179,3237216.095,control,Coordinates:  NNI11
+3,No-name Creek Inshore,Same,NNI2,Same,298480.1915,3237712.571,control,Coordinates:  NNI21
+M,Horseshoe Beach Nearshore,Same,HBN5,HBN2,283641,3256262,control,Appears only 12/8/2010 sample was mislabeled

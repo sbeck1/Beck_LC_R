@@ -3,7 +3,14 @@ Elevation Data Compilation:
 Sources (Date compiled into single production database: elevation_prod.csv):
 
 -Epoch 3 (Jan 31 2019...database created...still need BTI4-1, BTI-6, and all NNI,LCI,LCN transects)
--Epoch 1
+-Epoch 2 (data needs located)
+-Epoch 1 (March 12, 2019)
+	-data linked with transect data
+	-reformatted to match elevation_prod.csv format
+	-removed stations with no elevation  data
+	-renamed stations
+	-removed duplicate elevation data applied to multiple transect sampling events
+	-notes from cleanup:  CKO3: no 2.5m tran_length, CRN1 data entered twice (effect oyster/elevation estimates derived from this data?), and deleted HBO1 due to inconsistent elevations across transect sampling events (no way to tell which is correct).  
 -Preconstruction Benchmarks:  (Feb 12 2019)
 	-convert coordinate system to UTM
 	-convert elevation to meters

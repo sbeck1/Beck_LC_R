@@ -8,3 +8,6 @@ Manually compiled:
 
 March 7, 2019:
 -incorporated contractor precon bathymetric survey into master (start of r code).  Only assigned station info to points within element footprints.
+
+March 11, 2019:
+-incorporated epoch 1 UF RTK data.
