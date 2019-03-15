@@ -47,6 +47,7 @@ write.csv(e1_clean, "elevation/data/development/uf/epoch1/epoch1_elevation_clean
 ###prep table for Arc 
 e_prod=read.csv("elevation/data/development/elevation_prod.csv")
 
+###heat map
 #elevation size bins/no negative values allowed
 e_neg=e_prod[which(e_prod$elev_m<=0),]
 e_neg$neg_e_abs=abs(e_neg$elev_m)
