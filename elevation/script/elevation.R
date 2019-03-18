@@ -45,7 +45,7 @@ write.csv(e1_clean, "elevation/data/development/uf/epoch1/epoch1_elevation_clean
 
 
 ###prep table for Arc 
-e_prod=read.csv("elevation/data/development/elevation_prod.csv")
+e_prod=read.csv("elevation/data/development/elevation_production.csv")
 
 ###heat map
 #elevation size bins/no negative values allowed
@@ -71,3 +71,174 @@ e_epoch1=e_neg[which(e_neg$year<2011),]
 write.csv(e_epoch1, "elevation/data/development/e_epoch1.csv")
 
 
+
+
+###Exploratory plots
+library(ggplot2)
+library(plotly)
+
+#epoch1
+e_2010=e_prod[which(e_prod$year==2010),]
+
+#Entire dataset 
+ggplot(e_2010,aes(x=elev_m))+
+  labs(title="Frequency Histogram of Epoch 1 Reef Elevation")+
+  geom_histogram(bins=30)+
+  geom_vline(xintercept=0)+
+  ylab("Frequency")+
+  xlab("Elevation (m)")
+dev.copy2pdf(file="elevation/fig/epoch1_elev_hist.pdf")
+
+ggplot(e_2010,aes(x=elev_m))+
+  labs(title="Probability Density Function: Epoch 1 Reef Elevation")+
+  geom_density(alpha=0.4)+
+  geom_vline(xintercept=0)+
+  ylab("Frequency")+
+  xlab("Elevation (m)")
+dev.copy2pdf(file="elevation/fig/epoch1_elev_pdf.pdf")
+
+#By site
+ggplot(e_2010,aes(x=elev_m))+
+  labs(title="Frequency Histogram of Epoch 1 Reef Elevation by Site")+
+  geom_histogram(bins=30)+
+  geom_vline(xintercept=0)+
+  facet_wrap(~site)+
+  ylab("Frequency")+
+  xlab("Elevation (m)")
+dev.copy2pdf(file="elevation/fig/epoch1_elev_hist_site.pdf")
+
+ggplot(e_2010,aes(x=elev_m, fill=site))+
+  labs(title="Probability Density Function: Epoch 1 Reef Elevation by Site")+
+  geom_density(alpha=0.4)+
+  geom_vline(xintercept=0)+
+  ylab("Frequency")+
+  xlab("Elevation (m)")
+dev.copy2pdf(file="elevation/fig/epoch1_elev_pdf_site.pdf")
+
+ggplot(e_2010,aes(x=tran_length,y=elev_m,color=site))+
+  geom_point()+
+  geom_smooth()+
+  ylab("Elevation(m)")+
+  xlab("Transect length (m)")
+dev.copy2pdf(file="elevation/fig/epoch1_elev_plot_site.pdf")
+
+#by locality*site
+
+ggplot(e_2010,aes(x=elev_m, fill=site))+
+  labs(title="Probability Density Function: Epoch 1 Reef Elevation by Site and Locality")+
+  geom_density(alpha=0.4)+
+  geom_vline(xintercept=0)+
+  facet_wrap(~locality)+
+  ylab("Frequency")+
+  xlab("Elevation (m)")
+dev.copy2pdf(file="elevation/fig/epoch1_elev_pdf_site_local.pdf")
+
+ggplot(e_2010,aes(x=tran_length,y=elev_m,color=site))+
+  geom_point()+
+  geom_smooth()+
+  facet_wrap(~locality)+
+  ylab("Elevation(m)")+
+  xlab("Transect length (m)")
+dev.copy2pdf(file="elevation/fig/epoch1_elev_plot_site_local.pdf")
+
+#by Locality*Site*Bar
+ggplot(e_2010,aes(x=tran_length,y=elev_m,color=bar))+
+  geom_point()+
+  geom_smooth()+
+  facet_wrap(~locality)+
+  ylab("Elevation(m)")+
+  xlab("Transect length (m)")
+dev.copy2pdf(file="elevation/fig/epoch1_elev_plot_local_site_bar.pdf")
+
+
+
+#pre vs post construction
+e_pp=e_prod[which(e_prod$collector=="YOUNG"|e_prod$collector=="DANIEL_GORE"),]
+e_pp1=e_pp[-which(e_pp$bar=="-999"|e_pp$bar=="N_A"),]
+e_pp2=e_pp1[-which(e_pp1$type=="BENCHMARK"),]
+levels(e_pp$collector)[levels(e_pp$collector)=="YOUNG"]="precon"
+levels(e_pp$collector)[levels(e_pp$collector)=="DANIEL_GORE"]="postcon"
+
+levels(e_pp2$type)
+
+ggplot(e_pp1,aes(x=elev_m, fill=collector))+
+  labs(title="Probability Density Function: Lone Cabbage Reef Elevation Pre vs Post Construction")+
+  geom_density(alpha=0.4)+
+  geom_vline(xintercept=0)+
+  ylab("Frequency")+
+  xlab("Elevation (m)")
+dev.copy2pdf(file="elevation/fig/elev_pdf_lc_pre_post.pdf")
+
+
+ggplot(e_pp2,aes(x=bar,y=elev_m,color=collector))+
+  geom_point()+
+  geom_smooth()+
+  ylab("Elevation(m)")+
+  xlab("Element")
+dev.copy2pdf(file="elevation/fig/elev_plot_lc_pre_post.pdf")
+
+
+#epoch3
+#entire dataset
+e_3=e_prod[which(e_prod$year>2017),]
+e_3=e_3[-which(e_3$bar=="-999"|e_3$bar=="N_A"),]
+
+ggplot(e_3,aes(x=elev_m))+
+  labs(title="Frequency Histogram of Epoch 3 Reef Elevation")+
+  geom_histogram(bins=30)+
+  geom_vline(xintercept=0)+
+  ylab("Frequency")+
+  xlab("Elevation (m)")
+dev.copy2pdf(file="elevation/fig/epoch3_elev_hist.pdf")
+
+ggplot(e_3,aes(x=elev_m))+
+  labs(title="Probability Density Function: Epoch 3 Reef Elevation")+
+  geom_density(alpha=0.4)+
+  geom_vline(xintercept=0)+
+  ylab("Frequency")+
+  xlab("Elevation (m)")
+dev.copy2pdf(file="elevation/fig/epoch3_elev_pdf.pdf")
+
+#by Site
+ggplot(e_3,aes(x=elev_m))+
+  labs(title="Frequency Histogram of Epoch 3 Reef Elevation by Site")+
+  geom_histogram(bins=30)+
+  geom_vline(xintercept=0)+
+  facet_wrap(~site)+
+  ylab("Frequency")+
+  xlab("Elevation (m)")
+dev.copy2pdf(file="elevation/fig/epoch3_elev_hist_site.pdf")
+
+ggplot(e_3,aes(x=elev_m, fill=site))+
+  labs(title="Probability Density Function: Epoch 3 Reef Elevation by Site")+
+  geom_density(alpha=0.4)+
+  geom_vline(xintercept=0)+
+  ylab("Frequency")+
+  xlab("Elevation (m)")
+dev.copy2pdf(file="elevation/fig/epoch3_elev_pdf_site.pdf")
+
+
+#by locality*site
+
+ggplot(e_3,aes(x=elev_m, fill=site))+
+  labs(title="Probability Density Function: Epoch 3 Reef Elevation by Site and Locality")+
+  geom_density(alpha=0.4)+
+  geom_vline(xintercept=0)+
+  facet_wrap(~locality)+
+  ylab("Frequency")+
+  xlab("Elevation (m)")
+dev.copy2pdf(file="elevation/fig/epoch3_elev_pdf_site_local.pdf")
+
+
+#Epoch 3 UF stations only
+
+#locality*Site*bar
+e3_uf=e_3[which(e_3$collector=="UF"&e_3$type=="REEF"),]
+
+ggplot(e3_uf,aes(x=tran_length,y=elev_m,color=bar))+
+  geom_point()+
+  geom_smooth()+
+  facet_wrap(~locality)+
+  ylab("Elevation(m)")+
+  xlab("Transect length (m)")
+dev.copy2pdf(file="elevation/fig/epoch3_elev_plot_local_site_bar.pdf")
