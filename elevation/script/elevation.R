@@ -116,6 +116,7 @@ ggplot(e_2010,aes(x=elev_m, fill=site))+
 dev.copy2pdf(file="elevation/fig/epoch1_elev_pdf_site.pdf")
 
 ggplot(e_2010,aes(x=tran_length,y=elev_m,color=site))+
+  labs(title="Scatterplot: Epoch 1 Elevation by Site")+
   geom_point()+
   geom_smooth()+
   ylab("Elevation(m)")+
@@ -134,6 +135,7 @@ ggplot(e_2010,aes(x=elev_m, fill=site))+
 dev.copy2pdf(file="elevation/fig/epoch1_elev_pdf_site_local.pdf")
 
 ggplot(e_2010,aes(x=tran_length,y=elev_m,color=site))+
+  labs(title="Scatterplot: Epoch 1 Elevation by Locality/Site")+
   geom_point()+
   geom_smooth()+
   facet_wrap(~locality)+
@@ -143,6 +145,7 @@ dev.copy2pdf(file="elevation/fig/epoch1_elev_plot_site_local.pdf")
 
 #by Locality*Site*Bar
 ggplot(e_2010,aes(x=tran_length,y=elev_m,color=bar))+
+  labs(title="Scatterplot: Epoch 1 Elevation by Locality/Site/Bar")+
   geom_point()+
   geom_smooth()+
   facet_wrap(~locality)+
@@ -156,12 +159,12 @@ dev.copy2pdf(file="elevation/fig/epoch1_elev_plot_local_site_bar.pdf")
 e_pp=e_prod[which(e_prod$collector=="YOUNG"|e_prod$collector=="DANIEL_GORE"),]
 e_pp1=e_pp[-which(e_pp$bar=="-999"|e_pp$bar=="N_A"),]
 e_pp2=e_pp1[-which(e_pp1$type=="BENCHMARK"),]
-levels(e_pp$collector)[levels(e_pp$collector)=="YOUNG"]="precon"
-levels(e_pp$collector)[levels(e_pp$collector)=="DANIEL_GORE"]="postcon"
+levels(e_pp2$collector)[levels(e_pp2$collector)=="YOUNG"]="precon"
+levels(e_pp2$collector)[levels(e_pp2$collector)=="DANIEL_GORE"]="postcon"
 
-levels(e_pp2$type)
+levels(e_pp2$collector)
 
-ggplot(e_pp1,aes(x=elev_m, fill=collector))+
+ggplot(e_pp2,aes(x=elev_m, fill=collector))+
   labs(title="Probability Density Function: Lone Cabbage Reef Elevation Pre vs Post Construction")+
   geom_density(alpha=0.4)+
   geom_vline(xintercept=0)+
@@ -171,10 +174,12 @@ dev.copy2pdf(file="elevation/fig/elev_pdf_lc_pre_post.pdf")
 
 
 ggplot(e_pp2,aes(x=bar,y=elev_m,color=collector))+
+  labs(title="Scatterplot: Lone Cabbage Reef Elevation Pre vs Post Construction")+
   geom_point()+
   geom_smooth()+
   ylab("Elevation(m)")+
-  xlab("Element")
+  xlab("Element")+
+  scale_x_discrete(limits=c("2","3","4","5","6","7","8A","8B","9A","9B","10A","10B","11A","11B","12","13","14","15","16","17","18","20","21","22"))
 dev.copy2pdf(file="elevation/fig/elev_plot_lc_pre_post.pdf")
 
 
