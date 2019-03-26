@@ -1,0 +1,1 @@
+The "master_geospatial" file contains all project related point data (x,y,z) for use in joins to biological data

@@ -1,9 +1,11 @@
 Elevation Data Compilation:
 
-Sources (Date compiled into single production database: elevation_prod.csv):
+Sources (Date compiled into single production database: elevation_production.csv):
 
 -Epoch 3 (Jan 31 2019...database created...still need BTI4-1, BTI-6, and all NNI,LCI,LCN transects)
--Epoch 2 (data needs located)
+-Epoch 2 (data needs located...update: provided to Steve March 15 2019, incorporated March 26, 2019)
+	-compared to precon bathymetry, elevations appear to be in meters
+	-a couple transect lengths appear off (15 instead of 16, 5, instead of 6)...maintained original values
 -Epoch 1 (March 12, 2019)
 	-data linked with transect data
 	-reformatted to match elevation_prod.csv format
