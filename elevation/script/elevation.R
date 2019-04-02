@@ -182,6 +182,10 @@ ggplot(e_pp2,aes(x=bar,y=elev_m,color=collector))+
   scale_x_discrete(limits=c("2","3","4","5","6","7","8A","8B","9A","9B","10A","10B","11A","11B","12","13","14","15","16","17","18","20","21","22"))
 dev.copy2pdf(file="elevation/fig/elev_plot_lc_pre_post.pdf")
 
+#summary stats
+library(psych)
+describeBy(e_pp2$elev_m, group=e_pp2$collector)
+
 
 #epoch3
 #entire dataset
