@@ -14,3 +14,6 @@ March 11, 2019:
 
 March 26, 2019:
 -incorporated epoch 2 UF RTK data.
+
+April 15, 2019:
+-re-processed (corrected) epoch 3 data.
