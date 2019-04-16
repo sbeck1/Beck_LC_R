@@ -26,14 +26,21 @@ shell_summary2$total_L=(shell_summary2$total/shell_summary2$t_vol_ml)*1000
 
 #format for rbind 
 shell_summary3=shell_summary2[,c(1,2,8,9,16)]
-shell_summary3$type="KG_SHELL"
+shell_summary3$type="SHELL"
 colnames(shell_summary3)[5]="total"
 as.integer(shell_summary3$total)
 str(shell_summary3)
 
-### Tile Spat Collectors ###
+
+
+
+
+
+####### Tile Spat Collectors ########
 tile_spat=read.csv("oyster/spat/data/development/tile_spat_count.csv")
 tile_spat2=tile_spat[which(tile_spat$cnt>=0),]
+
+#surface area of tile = (2*(0.151m x 0.151m))+(4*(0.151 x 0.101m)) = 0.106606sq m
 
 #format for merge
 tile_summary = tile_spat2 %>%
@@ -43,7 +50,7 @@ tile_summary = tile_spat2 %>%
 #format for rbind
 tile_summary2 = tile_spat2 %>%
   group_by(station,month,year)%>%
-  summarise(total=sum(cnt))
+  summarise(total=sum(cnt)) #multiply total spat count by 9.380335 to obtain total spat per sq m
 tile_summary2$type="TILE"
 str(tile_summary2)
 
@@ -52,6 +59,7 @@ combined=merge(shell_summary2,tile_summary,by=c("station","month"))
 combined2=bind_rows(shell_summary3,tile_summary2)
 mo2num=function(x) match(tolower(x),tolower(month.name))  #month name to month number
 combined2$month_num=mo2num(combined2$month)
+combined2$month_num=factor(combined2$month_num)
 
 #combined2=combined2[which(combined2$month_num>=8),]
 
@@ -83,14 +91,14 @@ write.csv(tile_spat_utm,"oyster/spat/data/development/tile_spat_utm.csv")
 #plot of time series
 ggplot(shell_summary2, aes(x=month,y=total_kg,shape=station))+
   geom_point(size=2.5)+
-  scale_shape_manual(values=c(1,2,3,4,5,6,7,8,9))+
+  scale_shape_manual(values=c(1,2,3,4,5,6,7,8,9,10))+
   labs(title="Shell Spat Collectors:  Total Spat by Station/Month",x="Month", y="Spat/kg Shell")
 
 
 ### Tile Spat Collectors ###
 ggplot(tile_summary, aes(x=month,y=tile_total,shape=station))+
   geom_point(size=2.5)+
-  scale_shape_manual(values=c(1,2,3,4,5,6,7,8,9))+
+  scale_shape_manual(values=c(1,2,3,4,5,6,7,8,9,10))+
   labs(title="Tile Spat Collectors:  Total Spat by Station/Month",x="Month", y="Spat/Tile")
 
 
@@ -104,14 +112,15 @@ com6=combined2[which(combined2$station=="WQ6"),]
 com7=combined2[which(combined2$station=="WQ7"),]
 com8=combined2[which(combined2$station=="WQ8"),]
 com9=combined2[which(combined2$station=="WQ9"),]
+com10=combined2[which(combined2$station=="WQ10"),]
 
 WQ1=ggplot(com1, aes(x=month_num, y=total, shape=type))+
   ylim(0,3000)+
   geom_point(size=2.5)+
   labs(title="WQ1",x="", y="")+
-  theme(legend.position=c(0.5,0.9),
+  theme(legend.position=c(0.66,0.8),
         legend.background=element_rect(color="black",size=0.5))+
-  scale_x_discrete(limits=c(4:12))
+  scale_x_discrete(limits=c("4","5","6","7","8","9","10","11","12","1","2","3"))
 
 WQ2=ggplot(com2, aes(x=month_num, y=total, shape=type))+
   ylim(0,3000)+
@@ -119,56 +128,63 @@ WQ2=ggplot(com2, aes(x=month_num, y=total, shape=type))+
   expand_limits(x=4,y=0)+
   labs(title="WQ2",x="", y="")+
   theme(legend.position="none")+
-  scale_x_discrete(limits=c(4:12))
+  scale_x_discrete(limits=c("4","5","6","7","8","9","10","11","12","1","2","3"))
 
 WQ3=ggplot(com3, aes(x=month_num, y=total, shape=type))+
   ylim(0,3000)+
   geom_point(size=2.5)+
   labs(title="WQ3",x="Month", y="")+
   theme(legend.position="none")+
-  scale_x_discrete(limits=c(4:12))
+  scale_x_discrete(limits=c("4","5","6","7","8","9","10","11","12","1","2","3"))
 
 WQ4=ggplot(com4, aes(x=month_num, y=total, shape=type))+
   ylim(0,3000)+
   geom_point(size=2.5)+
   labs(title="WQ4",x="", y="")+
   theme(legend.position="none")+
-  scale_x_discrete(limits=c(4:12))
+  scale_x_discrete(limits=c("4","5","6","7","8","9","10","11","12","1","2","3"))
 
 WQ5=ggplot(com5, aes(x=month_num, y=total, shape=type))+
   ylim(0,3000)+
   geom_point(size=2.5)+
   labs(title="WQ5",x="", y="Total Spat")+
   theme(legend.position="none")+
-  scale_x_discrete(limits=c(4:12))
+  scale_x_discrete(limits=c("4","5","6","7","8","9","10","11","12","1","2","3"))
 
 WQ6=ggplot(com6, aes(x=month_num, y=total, shape=type))+
   ylim(0,3000)+
   geom_point(size=2.5)+
   labs(title="WQ6",x="", y="")+
   theme(legend.position="none")+
-  scale_x_discrete(limits=c(4:12))
+  scale_x_discrete(limits=c("4","5","6","7","8","9","10","11","12","1","2","3"))
 
 WQ7=ggplot(com7, aes(x=month_num, y=total, shape=type))+
   ylim(0,3000)+
   geom_point(size=2.5)+
   labs(title="WQ7",x="", y="")+
   theme(legend.position="none")+
-  scale_x_discrete(limits=c(4:12))
+  scale_x_discrete(limits=c("4","5","6","7","8","9","10","11","12","1","2","3"))
 
 WQ8=ggplot(com8, aes(x=month_num, y=total, shape=type))+
   ylim(0,3000)+
   geom_point(size=2.5)+
   labs(title="WQ8",x="", y="")+
   theme(legend.position="none")+
-  scale_x_discrete(limits=c(4:12))
+  scale_x_discrete(limits=c("4","5","6","7","8","9","10","11","12","1","2","3"))
 
 WQ9=ggplot(com9, aes(x=month_num, y=total, shape=type))+
   ylim(0,3000)+
   geom_point(size=2.5)+
   labs(title="WQ9",x="", y="")+
   theme(legend.position="none")+
-  scale_x_discrete(limits=c(4:12))
+  scale_x_discrete(limits=c("4","5","6","7","8","9","10","11","12","1","2","3"))
+
+#WQ10=ggplot(com10, aes(x=month_num, y=total, shape=type))+
+  #ylim(0,3000)+
+  #geom_point(size=2.5)+
+  #labs(title="WQ10",x="", y="")+
+  #theme(legend.position="none")+
+  #scale_x_discrete(limits=c("4","5","6","7","8","9","10","11","12","1","2","3"))
 
 multiplot(WQ6,WQ5,WQ4,WQ1,WQ2,WQ3,WQ7,WQ8,WQ9,cols=3)
 dev.copy2pdf(file="oyster/spat/fig/shell_tile_spat_total.pdf")
