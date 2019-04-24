@@ -5,7 +5,7 @@ Spring 2019:
 
 Summer 2019:
 -Mel compiles all Epoch 1 and 2 datasheets.
--Steve provided renaming guidance maps and spreadsheet based on GIS files. This was to ensure accurate spatial-temporal identification of data.
+-Steve provided station renaming guidance maps and spreadsheet based on GIS files. This was to ensure accurate spatial-temporal identification of data.
 -Katie began to apply renaming conventions to transect data (priority in preparation for upcoming transect sampling).
 
 Fall 2019:
@@ -24,7 +24,7 @@ March 13 2019:
 
 Steve finalizing rename effort.
 April 22, 2019:
--Housing production files on personal Git page until guidance provided on how to incorporate into Git.
+-Housing production files on personal Git page until guidance provided on how to incorporate into project Git.
 -Corrected remaining transect name issues in "transect_data_production2.csv"
 -Created "quadrat_data_production.csv", matching transect_data_production as much as possible, building from "quadrat_combined_newstations.csv" file Jen provided
 	-substation = quadrat # on a bar (synonomous with transect column).  Changed this column to "quadrat"  
