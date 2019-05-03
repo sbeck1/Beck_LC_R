@@ -7,3 +7,11 @@ Jan 30, 2019:
 -Need to set-up pick lists, error checks
 -Need to confirm packet to final spreadsheet process
 -Research salinity tolerances by family
+
+March 30, 2019:
+-field_sed and species packets finalized
+-All samples identified and data species data reconciled
+-After waiting for new blower install, all sediment samples have been processed in the ovens in the Newins-Ziegle basement room B-4.
+
+May 3, 2019:
+-sediment samples processed and field_sed data roconciled.
