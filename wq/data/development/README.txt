@@ -1,0 +1,2 @@
+Bill requested we collect discrete salinity data at transect locations as we collected geode GPS points:  lc_spring2019_sal
+This effort was use to test setting up an editable shapefile with pick lists and electronic data entry on the Geode GPS unit
