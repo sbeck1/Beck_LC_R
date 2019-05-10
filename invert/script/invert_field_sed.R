@@ -40,10 +40,10 @@ dev.copy2pdf(file="invert/fig/invert_coarse_sed_mean.pdf")
 sed_org_c=merge(invert_stn,sed_org_c)
 write.csv(sed_org_c,"invert/fig/invert_org_carbon_mean.csv")
 
-sed_course=merge(invert_stn,sed_coarse)
+sed_coarse=merge(invert_stn,sed_coarse)
 write.csv(sed_coarse,"invert/fig/invert_coarse_sed_mean.csv")
 
-sp_sed=merge(comm_sp_abund_stn,sed)
+sp_sed=merge(comm_sp_abund_samp,sed)
 
 ggplot(sp_sed, aes(x=coarse, y=total))+
   geom_point()+
