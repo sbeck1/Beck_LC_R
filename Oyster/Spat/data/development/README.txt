@@ -1,0 +1,1 @@
+Monthly spat processing spreadsheets are stored in the entry folder, then manually combined with "count" csv files.
