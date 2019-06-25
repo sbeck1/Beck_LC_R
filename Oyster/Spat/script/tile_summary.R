@@ -33,7 +33,7 @@ tile_summary2$station=factor(tile_summary2$station,levels=c("WQ6","WQ1","WQ7","W
 
 ggplot(tile_summary2, aes(x=month_num,y=total,shape=year))+
   geom_point(size=2)+
-  labs(title="Tile Spat Collectors:  Total Spat by Station/Month/Year",x="Month", y="Spat per Tile")+
+  labs(title="Tile Spat Collectors:  Total Spat by Station/Month/Year",x="Month", y="Spat Count per Tile")+
   facet_wrap(~station, ncol=3)+
   theme(axis.text.x=element_text(size=rel(0.8)))+
   scale_x_discrete(limits=c("6","7","8","9","10","11","12","1","2","3","4","5"))
@@ -44,7 +44,7 @@ dev.copy2pdf(file="oyster/spat/fig/tile_spat_total.pdf")
 
 ggplot(tile_summary2, aes(x=month_num,y=total,shape=year))+
   geom_point(size=2)+
-  labs(x="Month", y="Spat per Tile")+
+  labs(x="Month", y="Spat Count per Tile")+
   facet_wrap(~station, ncol=3)+
   theme(axis.text.x=element_text(size=rel(0.8)))+
   scale_x_discrete(limits=c("6","7","8","9","10","11","12","1","2","3","4","5"))
@@ -71,7 +71,7 @@ tile_side_all = subset(tile_side_all, select=c(side,cnt_mean,cnt_std.error))
 
 ggplot(tile_side_all, aes(x=side,y=cnt_mean))+
   geom_point(stat="identity",colour="black")+
-  labs(title="Tile Spat Collectors:  Mean Spat Totals by Tile Side",x="Tile Side",y="Mean +/- SE")+
+  labs(title="Tile Spat Collectors:  Mean Spat Totals by Tile Side",x="Tile Side",y="Mean Spat Count +/- SE")+
   geom_errorbar(aes(ymin=cnt_mean-cnt_std.error,ymax=cnt_mean+cnt_std.error),width=.2)
 
 dev.copy2pdf(file="oyster/spat/fig/tile_side_all.pdf")
@@ -81,7 +81,7 @@ write.csv(tile_side_all,"oyster/spat/report/report_table_data/tile_side_all.csv"
 
 ggplot(tile_side_all, aes(x=side,y=cnt_mean))+
   geom_point(stat="identity",colour="black")+
-  labs(x="Tile Side",y="Mean +/- SE")+
+  labs(x="Tile Side",y="Mean Spat Count +/- SE")+
   geom_errorbar(aes(ymin=cnt_mean-cnt_std.error,ymax=cnt_mean+cnt_std.error),width=.2)
 
 dev.copy2pdf(file="oyster/spat/report/report_fig/rep_tile_side_all.pdf")
@@ -94,7 +94,7 @@ tile_side_month = subset(tile_side_month, select=c(side,month_num,cnt_mean,cnt_s
 
 ggplot(tile_side_month, aes(x=month_num,y=cnt_mean,shape=side))+
   geom_point(stat="identity",colour="black")+
-  labs(title="Tile Spat Collectors:  Mean Spat Totals by Month/Tile Side",x="Month",y="Mean +/- SE")+
+  labs(title="Tile Spat Collectors:  Mean Spat Totals by Month/Tile Side",x="Month",y="Mean Spat Count +/- SE")+
   geom_errorbar(aes(ymin=cnt_mean-cnt_std.error,ymax=cnt_mean+cnt_std.error),width=.2)+
   scale_x_discrete(limits=c("6","7","8","9","10","11","12","1","2","3","4","5"))
 
@@ -105,7 +105,7 @@ write.csv(tile_side_month,"oyster/spat/report/report_table_data/tile_side_month.
 
 ggplot(tile_side_month, aes(x=month_num,y=cnt_mean,shape=side))+
   geom_point(stat="identity",colour="black")+
-  labs(x="Month",y="Mean +/- SE")+
+  labs(x="Month",y="Mean Spat Count +/- SE")+
   geom_errorbar(aes(ymin=cnt_mean-cnt_std.error,ymax=cnt_mean+cnt_std.error),width=.2)+
   scale_x_discrete(limits=c("6","7","8","9","10","11","12","1","2","3","4","5"))
 
@@ -116,7 +116,7 @@ tile_spat3$station=factor(tile_spat3$station,levels=c("WQ6","WQ1","WQ7","WQ5","W
 
 ggplot(tile_spat3, aes(x=month_num,y=cnt,shape=side))+
   geom_point(size=1.5)+
-  labs(title="Tile Spat Collectors:  Total Spat by Station/Month/Tile Side",x="Month", y="Spat per Tile")+
+  labs(title="Tile Spat Collectors:  Total Spat by Station/Month/Tile Side",x="Month", y="Spat Count per Tile")+
   facet_wrap(~station, ncol=3)+
   theme(axis.text.x=element_text(size=rel(0.8)))+
   scale_x_discrete(limits=c("6","7","8","9","10","11","12","1","2","3","4","5"))
@@ -128,7 +128,7 @@ write.csv(tile_spat3,"oyster/spat/report/report_table_data/tile_side_mo_stn.csv"
 
 ggplot(tile_spat3, aes(x=month_num,y=cnt,shape=side))+
   geom_point(size=1.5)+
-  labs(x="Month", y="Spat per Tile")+
+  labs(x="Month", y="Spat Count per Tile")+
   facet_wrap(~station, ncol=3)+
   theme(axis.text.x=element_text(size=rel(0.8)))+
   scale_x_discrete(limits=c("6","7","8","9","10","11","12","1","2","3","4","5"))
@@ -152,7 +152,7 @@ tile_size_side = subset(tile_size_side, select=c(side,size_mean,size_std.error))
 ggplot(tile_size_side, aes(x=side,y=size_mean))+
   geom_point(stat="identity",colour="black")+
   ylim(0,10)+
-  labs(title="Tile Spat Collectors:  Mean Maximum Spat Size by Tile Side",x="Tile Side",y="Mean Size (mm) +/- SE")+
+  labs(title="Tile Spat Collectors:  Mean Maximum Spat Height by Tile Side",x="Tile Side",y="Mean Spat Height (mm) +/- SE")+
   geom_errorbar(aes(ymin=size_mean-size_std.error,ymax=size_mean+size_std.error),width=.2)
 
 dev.copy2pdf(file="oyster/spat/fig/tile_size_side.pdf")
@@ -163,7 +163,7 @@ write.csv(tile_size_side,"oyster/spat/report/report_table_data/tile_size_side.cs
 ggplot(tile_size_side, aes(x=side,y=size_mean))+
   geom_point(stat="identity",colour="black")+
   ylim(0,10)+
-  labs(x="Tile Side",y="Mean Size (mm) +/- SE")+
+  labs(x="Tile Side",y="Mean Spat Height (mm) +/- SE")+
   geom_errorbar(aes(ymin=size_mean-size_std.error,ymax=size_mean+size_std.error),width=.2)
 
 dev.copy2pdf(file="oyster/spat/report/report_fig/rep_tile_size_side.pdf")
@@ -179,7 +179,7 @@ tile_size_month$year=as.factor(tile_size_month$year)
 ggplot(tile_size_month, aes(x=month_num,y=size_mean,shape=year))+
   geom_point(stat="identity",colour="black")+
   ylim(0,11)+
-  labs(title="Tile Spat Collectors:  Mean Maximum Spat Size by Month",x="Month",y="Mean Size (mm) +/- SE")+
+  labs(title="Tile Spat Collectors:  Mean Maximum Spat Height by Month",x="Month",y="Mean Spat Height (mm) +/- SE")+
   geom_errorbar(aes(ymin=size_mean-size_std.error,ymax=size_mean+size_std.error),width=.2)+
   scale_x_discrete(limits=c("6","7","8","9","10","11","12","1","2","3","4","5"))
 
@@ -191,7 +191,7 @@ write.csv(tile_size_month,"oyster/spat/report/report_table_data/tile_size_month.
 ggplot(tile_size_month, aes(x=month_num,y=size_mean,shape=year))+
   geom_point(stat="identity",colour="black")+
   ylim(0,11)+
-  labs(x="Month",y="Mean Size (mm) +/- SE")+
+  labs(x="Month",y="Mean Spat Height (mm) +/- SE")+
   geom_errorbar(aes(ymin=size_mean-size_std.error,ymax=size_mean+size_std.error),width=.2)+
   scale_x_discrete(limits=c("6","7","8","9","10","11","12","1","2","3","4","5"))
 
@@ -209,7 +209,7 @@ tile_size_mo_stn$station=factor(tile_size_mo_stn$station,levels=c("WQ6","WQ1","W
 
 ggplot(tile_size_mo_stn, aes(x=month_num,y=size_mean,shape=year))+
   geom_point(size=1.5)+
-  labs(title="Tile Spat Collectors:  Mean Maximum Spat Size by Station/Month",x="Month", y="Mean Size (mm) +/- SE")+
+  labs(title="Tile Spat Collectors:  Mean Maximum Spat Height by Station/Month",x="Month", y="Mean Spat Height (mm) +/- SE")+
   facet_wrap(~station, ncol=3)+
   geom_errorbar(aes(ymin=size_mean-size_std.error,ymax=size_mean+size_std.error),width=.2)+
   theme(axis.text.x=element_text(size=rel(0.8)))+
@@ -222,7 +222,7 @@ write.csv(tile_size_mo_stn,"oyster/spat/report/report_table_data/tile_size_mo_st
 
 ggplot(tile_size_mo_stn, aes(x=month_num,y=size_mean,shape=year))+
   geom_point(size=1.5)+
-  labs(x="Month", y="Mean Size (mm) +/- SE")+
+  labs(x="Month", y="Mean Spat Height (mm) +/- SE")+
   facet_wrap(~station, ncol=3)+
   geom_errorbar(aes(ymin=size_mean-size_std.error,ymax=size_mean+size_std.error),width=.2)+
   theme(axis.text.x=element_text(size=rel(0.8)))+
