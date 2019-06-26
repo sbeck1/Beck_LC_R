@@ -50,7 +50,7 @@ dev.copy2pdf(file="oyster/spat/fig/shell_spat_total.pdf")
 
 ggplot(shell_summary2_l, aes(x=month_num,y=meas,shape=type))+
   geom_point(size=2)+
-  labs(x="Month", y="Total Spat")+
+  labs(x="Month", y="Total Spat Count")+
   facet_wrap(~station, ncol=3)+
   theme(axis.text.x=element_text(size=rel(0.8)))+
   scale_x_discrete(limits=c("4","6","7","8","9","10"))
@@ -75,6 +75,7 @@ shell_side_all = subset(shell_side_all, select=c(side,cnt_mean,cnt_std.error))
 
 ggplot(shell_side_all, aes(x=side,y=cnt_mean))+
   geom_point(stat="identity",colour="black")+
+  ylim(0,10)+
   labs(title="Shell Spat Collectors:  Mean Spat Totals by Shell Side",x="Shell Side",y="Mean Spat Count +/- SE")+
   geom_errorbar(aes(ymin=cnt_mean-cnt_std.error,ymax=cnt_mean+cnt_std.error),width=.2)
 
@@ -85,7 +86,8 @@ write.csv(shell_side_all,"oyster/spat/report/report_table_data/shell_side_all.cs
 
 ggplot(shell_side_all, aes(x=side,y=cnt_mean))+
   geom_point(stat="identity",colour="black")+
-  labs(x="shell Side",y="Mean Spat Count +/- SE")+
+  ylim(0,10)+
+  labs(x="Shell Side",y="Mean Spat Count +/- SE")+
   geom_errorbar(aes(ymin=cnt_mean-cnt_std.error,ymax=cnt_mean+cnt_std.error),width=.2)
 
 dev.copy2pdf(file="oyster/spat/report/report_fig/rep_shell_side_all.pdf")
@@ -189,6 +191,7 @@ shell_size_month = subset(shell_size_month, select=c(month_num,size_mean,size_st
 
 ggplot(shell_size_month, aes(x=month_num,y=size_mean))+
   geom_point(stat="identity",colour="black")+
+  ylim(0,17)+
   labs(title="Shell Spat Collectors:  Mean Maximum Spat Height by Month",x="Month",y="Mean Spat Height (mm) +/- SE")+
   geom_errorbar(aes(ymin=size_mean-size_std.error,ymax=size_mean+size_std.error),width=.2)+
   scale_x_discrete(limits=c("4","6","7","8","9","10"))
@@ -202,6 +205,7 @@ write.csv(tile_size_month,"oyster/spat/report/report_table_data/shell_size_month
 
 ggplot(shell_size_month, aes(x=month_num,y=size_mean))+
   geom_point(stat="identity",colour="black")+
+  ylim(0,17)+
   labs(x="Month",y="Mean Spat Height (mm) +/- SE")+
   geom_errorbar(aes(ymin=size_mean-size_std.error,ymax=size_mean+size_std.error),width=.2)+
   scale_x_discrete(limits=c("4","6","7","8","9","10"))
@@ -265,4 +269,36 @@ ggplot(shell_spat2, aes(x=month_num,y=barnacle))+
   scale_y_discrete(limits=c("NONE","LIGHT","MODERATE","HEAVY"))
 
 dev.copy2pdf(file="oyster/spat/report/report_fig/rep_shell_barnacle.pdf")
+
+
+
+###Spat count by shell dimensions
+shell_dim=subset(shell_spat, select=c(station,month_num,sh_ht_mm,sh_ln_mm,sh_wd_mm,ex_cnt,in_cnt))
+shell_dim=shell_dim %>% gather(dim,size,sh_ht_mm:sh_wd_mm)
+#shell_dim=shell_dim %>% gather(side,cnt,ex_cnt:in_cnt)
+shell_dim2= shell_dim[which(shell_dim$size>=0),]   #width not collected for April 2018
+shell_dim2$tot_cnt=shell_dim2$ex_cnt + shell_dim2$in_cnt
+
+ggplot(shell_dim2, aes(x=size,y=tot_cnt))+
+  geom_point(size=1.5)+
+  ylim(0,150)+
+  xlim(0,150)+
+  labs(title="Total Spat Count vs Shell Size", x="Shell Size (mm)", y="Total Spat Count")+
+  facet_wrap(~dim,ncol=3)
+
+dev.copy2pdf(file="oyster/spat/fig/shell_dim.pdf")
+
+#remove title for report
+
+ggplot(shell_dim2, aes(x=size,y=tot_cnt))+
+  geom_point(size=1.5)+
+  ylim(0,150)+
+  xlim(0,150)+
+  labs(x="Shell Size (mm)", y="Total Spat Count")+
+  facet_wrap(~dim,ncol=3)
+
+dev.copy2pdf(file="oyster/spat/report/report_fig/rep_shell_dim.pdf")
+
+
+
 
