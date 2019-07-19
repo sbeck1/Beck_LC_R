@@ -193,10 +193,10 @@ dev.copy2pdf(file="oyster/spat/fig/shell_tile_spat_total.pdf")
 
 #weight vs Volume Relationship for standarized counts
 par(mfrow=c(1,3))
-wt_vs_vol=lm(shell_summary2$total_L~shell_summary2$total_kg)
+wt_vs_vol=lm(combined$total_L~combined$total_kg)
 plot(shell_summary2$total_kg, shell_summary2$total_L, xlab="Spat/kg Shell", 
      ylab="Spat/L Shell", ylim=c(0,5500), xlim=c(0,5500),
-     main="Standardized Spat Counts:  Wt vs Vol", pch=16, col="black")
+     main="Shell Mass vs Shell Volume", pch=16, col="black")
 abline(wt_vs_vol)
 
 #Shell vs Tile Spat Collectors 
@@ -204,13 +204,13 @@ abline(wt_vs_vol)
 wt_vs_tile=lm(combined$total_kg~combined$tile_total)
 plot(combined$tile_total, combined$total_kg, xlab="Spat/Tile", ylab="Spat/kg Shell", 
      ylim=c(0,5500), xlim=c(0,5500),
-     main="Shell Weight vs Tile Spat Count", pch=16, col="black")
+     main="Tile vs Shell Mass", pch=16, col="black")
 abline(wt_vs_tile)
 
 vol_vs_tile=lm(combined$total_L~combined$tile_total)
 plot(combined$tile_total, combined$total_L, xlab="Spat/Tile", ylab="Spat/L Shell",
      ylim=c(0,5500), xlim=c(0,5500),
-     main="Shell Volume vs Tile Spat Count", pch=16, col="black")
+     main="Tile vs Shell Volume", pch=16, col="black")
 abline(vol_vs_tile)
 
 dev.copy2pdf(file="oyster/spat/fig/shell_tile_comp.pdf")
