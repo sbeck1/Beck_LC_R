@@ -23,7 +23,7 @@ sal_d= sal %>%
   group_by(year,month,day,Site) %>%
   summarise(mean=mean(Salinity),min=min(Salinity),max=max(Salinity))
 
-#remformat for plots
+#reformat for plots
 sal_d2=sal_d %>%
   gather(metric,value,mean:max)
 
@@ -36,7 +36,9 @@ ggplot(sal_d2, aes(x=date,y=value,color=metric))+
   labs(x="Date", y="Salinity (ppt)")+
   facet_wrap(~Site, ncol=3)
 
-#LC Reef effect
+
+
+####LC Reef effect
 
 #format
 sal_reef=sal[which(sal$Site<7),]
@@ -61,7 +63,7 @@ sal_reef3 = sal_reef3 %>%
                 day=lubridate::day(Date),
                 hour=lubridate::hour(Date))
 
-sal_reef3$Date=as.Date(sal_reef3$Date)
+sal_reef3$Date=as.Date(sal_reef3$Date) 
 
 ggplot(sal_reef3, aes(x=Date,y=diff))+
   geom_rect(aes(xmin=as.Date(c("2018-07-01 01:00:00")),xmax=as.Date(c("2018-09-30 23:00:00")),ymin=-Inf,ymax=Inf),fill="dodgerblue")+
@@ -73,4 +75,44 @@ ggplot(sal_reef3, aes(x=Date,y=diff))+
   theme(axis.text.x=element_text(size=rel(0.8)),legend.position="none")+
   facet_wrap(~pair)
 dev.copy2pdf(file="wq/fig/sal_diff_pre_post_reef_con.pdf")
+
+
+# Metric looking at total measurements per day where inside (station 1,2,3) salinity < outside (stn 4,5,6)...pre/post-con
+
+sal_reef4=sal_reef3
+sal_reef4$cnt=ifelse(sal_reef4$diff>=0,1,0)
+
+sal_reef5= sal_reef4 %>%
+  group_by(Date,pair) %>%
+  summarise(sum=sum(cnt))
+
+#below not very descriptive
+ggplot(sal_reef5, aes(x=Date,y=sum))+
+  geom_rect(aes(xmin=as.Date(c("2018-07-01 01:00:00")),xmax=as.Date(c("2018-09-30 23:00:00")),ymin=-Inf,ymax=Inf),fill="dodgerblue")+
+  geom_point(size=0.5)+
+  geom_hline(yintercept=0)+
+  geom_vline(xintercept=as.Date(c("2018-07-01 01:00:00","2018-09-30 23:00:00")))+
+  scale_x_date(date_labels="%b-%y")+
+  labs(x="Date", y="Number Measurements per Day Inside < Outside Salinity")+
+  theme(axis.text.x=element_text(size=rel(0.8)),legend.position="none")+
+  facet_wrap(~pair)
+
+#try mean meas per day inside sal < outside sal
+sal_reef6=sal_reef5
+sal_reef6$con=ifelse(sal_reef6$Date>"2018-07-01",(ifelse(sal_reef6$Date>"2018-09-30","postcon","con")),"precon")
+
+sal_reef7= sal_reef6 %>%
+  group_by(pair,con)%>%
+  summarise_all(funs(mean,sd,std.error))
+sal_reef7 = subset(sal_reef7, select=c(pair,con,sum_mean,sum_std.error))
+
+ggplot(sal_reef7, aes(x=con,y=sum_mean,shape=pair))+
+  geom_point(stat="identity",colour="black",size=2)+
+  labs(x="Construction Status",y="Mean Measurements per Day Inside Sal < Outside Sal +/- SE")+
+  geom_errorbar(aes(ymin=sum_mean-sum_std.error,ymax=sum_mean+sum_std.error),width=.1)+
+  scale_x_discrete(limits=c("precon","con","postcon"))+
+  ylim(0,24)
+dev.copy2pdf(file="wq/fig/mean_diff_pre_post_reef_con.pdf")
+
+
 
