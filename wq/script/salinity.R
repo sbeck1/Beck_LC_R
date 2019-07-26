@@ -137,6 +137,8 @@ ggplot(sal_m2, aes(x=date,y=value,color=metric))+
   theme(axis.text.x=element_text(angle=90))+
   facet_wrap(~Site, ncol=3)
 
+dev.copy2pdf(file="wq/fig/sal_mean_month.pdf")
+
 sal_m$year=as.factor(sal_m$year)
 
 ggplot(sal_m, aes(x=month,y=mean,shape=year))+
@@ -147,22 +149,126 @@ ggplot(sal_m, aes(x=month,y=mean,shape=year))+
   theme(axis.text.x=element_text(size=rel(0.8)))+
   facet_wrap(~Site, ncol=3)
 
-#### monthly summaries: cumulative measurements per month >5ppt
+dev.copy2pdf(file="wq/fig/sal_mean_month2.pdf")
 
-sal$cnt=ifelse(sal$Salinity>5,1,0)
+#### monthly summaries: cumulative measurements per month >5 and 15 ppt
 
-sal_5ppt= sal %>%
+sal$cnt_5=ifelse(sal$Salinity>5,1,0)
+sal$cnt_15=ifelse(sal$Salinity>15,1,0)
+
+sal_range= sal %>%
   group_by(year,month,Site) %>%
-  summarise(sum=sum(cnt))
+  summarise(sum_5=sum(cnt_5),sum_15=sum(cnt_15))
 
-sal_5ppt$year=as.factor(sal_5ppt$year)
-sal_5ppt$Site=factor(sal_5ppt$Site,levels=c("6","1","7","5","2","8","4","3","9","10"))
+sal_range$year=as.factor(sal_range$year)
+sal_range$Site=factor(sal_range$Site,levels=c("6","1","7","5","2","8","4","3","9","10"))
 
-ggplot(sal_5ppt, aes(x=month,y=sum,shape=year,color=year))+
+ggplot(sal_range, aes(x=month,y=sum_5,shape=year,color=year))+
   geom_point(size=2)+
   labs(x="Month", y="Total Measurements >5ppt")+
   scale_x_discrete(limits=c(1,2,3,4,5,6,7,8,9,10,11,12))+
   theme(axis.text.x=element_text(size=rel(0.8)))+
   facet_wrap(~Site, ncol=3)
+
+dev.copy2pdf(file="wq/fig/sal_month_gt5ppt.pdf")
+
+ggplot(sal_range, aes(x=month,y=sum_15,shape=year,color=year))+
+  geom_point(size=2)+
+  ylim(0,800)+
+  labs(x="Month", y="Total Measurements >15ppt")+
+  scale_x_discrete(limits=c(1,2,3,4,5,6,7,8,9,10,11,12))+
+  theme(axis.text.x=element_text(size=rel(0.8)))+
+  facet_wrap(~Site, ncol=3)
+
+dev.copy2pdf(file="wq/fig/sal_month_gt15ppt.pdf")
+
+
+#merging
+sal_merge=merge(sal_m,sal_range,by=c("year","month","Site"))
+sal_merge=plyr::rename(sal_merge,c("mean"="sal_mean","min"="sal_min","max"="sal_max"))
+
+
+
+
+##### temperature
+
+#monthly summaries:  mean temperatures
+
+#remove columns
+temp=subset(wq, select=c(Site,Temperature,Date))
+
+#seperate date
+temp = temp %>%
+  dplyr::mutate(year=lubridate::year(Date),
+                month=lubridate::month(Date),
+                day=lubridate::day(Date),
+                hour=lubridate::hour(Date))
+
+temp_m=temp %>%
+  group_by(year,month,Site) %>%
+  summarise(mean=mean(Temperature),min=min(Temperature),max=max(Temperature))
+
+temp_m2=temp_m %>%
+  gather(metric,value,mean:max)
+
+temp_m2$day=1
+temp_m2$date=as.Date(with(temp_m2, paste(year,month,day,sep="-")))
+
+temp_m2$Site=factor(temp$Site,levels=c("6","1","7","5","2","8","4","3","9","10"))
+
+ggplot(temp_m2, aes(x=date,y=value,color=metric))+
+  geom_point(size=0.5)+
+  labs(x="Date", y="Temperature (C)")+
+  scale_x_date(date_labels="%b-%y",date_breaks="2 months")+
+  theme(axis.text.x=element_text(angle=90))+
+  facet_wrap(~Site, ncol=3)
+
+dev.copy2pdf(file="wq/fig/temp_mean_month.pdf")
+
+temp_m$year=as.factor(temp_m$year)
+
+ggplot(temp_m, aes(x=month,y=mean,shape=year))+
+  geom_point(size=1)+
+  labs(x="Month", y="Temperature (C)")+
+  geom_errorbar(aes(ymin=min,ymax=max),width=.1)+
+  scale_x_discrete(limits=c(1,2,3,4,5,6,7,8,9,10,11,12))+
+  theme(axis.text.x=element_text(size=rel(0.8)))+
+  facet_wrap(~Site, ncol=3)
+
+dev.copy2pdf(file="wq/fig/temp_mean_month2.pdf")
+
+
+
+#### monthly summaries: cumulative measurements per month >25 degrees
+
+temp$cnt_25=ifelse(temp$Temperature>25,1,0)
+
+temp_range= temp %>%
+  group_by(year,month,Site) %>%
+  summarise(sum_25=sum(cnt_25))
+
+temp_range$year=as.factor(temp_range$year)
+temp_range$Site=factor(temp_range$Site,levels=c("6","1","7","5","2","8","4","3","9","10"))
+
+ggplot(temp_range, aes(x=month,y=sum_25,shape=year,color=year))+
+  geom_point(size=2)+
+  ylim(0,800)+
+  labs(x="Month", y="Total Measurements >25(C)")+
+  scale_x_discrete(limits=c(1,2,3,4,5,6,7,8,9,10,11,12))+
+  theme(axis.text.x=element_text(size=rel(0.8)))+
+  facet_wrap(~Site, ncol=3)
+
+dev.copy2pdf(file="wq/fig/temp_month_gt25C.pdf")
+
+#merging
+
+temp_merge=merge(temp_m,temp_range,by=c("year","month","Site"))
+temp_merge=plyr::rename(temp_merge,c("mean"="temp_mean","min"="temp_min","max"="temp_max"))
+
+
+#merge sal and temp files to combibe with spat data
+
+sal_temp=merge(temp_merge,sal_merge,by=c("year","month","Site"))
+write.csv(sal_temp,"wq/data/development/sal_temp.csv")
 
 
