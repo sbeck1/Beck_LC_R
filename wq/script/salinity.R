@@ -18,7 +18,8 @@ sal = sal %>%
                 day=lubridate::day(Date),
                 hour=lubridate::hour(Date))
 
-#daily summaries
+
+#### daily summaries
 sal_d= sal %>%
   group_by(year,month,day,Site) %>%
   summarise(mean=mean(Salinity),min=min(Salinity),max=max(Salinity))
@@ -114,5 +115,54 @@ ggplot(sal_reef7, aes(x=con,y=sum_mean,shape=pair))+
   ylim(0,24)
 dev.copy2pdf(file="wq/fig/mean_diff_pre_post_reef_con.pdf")
 
+
+
+#### monthly summaries: mean
+sal_m= sal %>%
+  group_by(year,month,Site) %>%
+  summarise(mean=mean(Salinity),min=min(Salinity),max=max(Salinity))
+
+sal_m2=sal_m %>%
+  gather(metric,value,mean:max)
+
+sal_m2$day=1
+sal_m2$date=as.Date(with(sal_m2, paste(year,month,day,sep="-")))
+
+sal_m2$Site=factor(sal_m2$Site,levels=c("6","1","7","5","2","8","4","3","9","10"))
+
+ggplot(sal_m2, aes(x=date,y=value,color=metric))+
+  geom_point(size=0.5)+
+  labs(x="Date", y="Salinity (ppt)")+
+  scale_x_date(date_labels="%b-%y",date_breaks="2 months")+
+  theme(axis.text.x=element_text(angle=90))+
+  facet_wrap(~Site, ncol=3)
+
+sal_m$year=as.factor(sal_m$year)
+
+ggplot(sal_m, aes(x=month,y=mean,shape=year))+
+  geom_point(size=1)+
+  labs(x="Month", y="Salinity (ppt)")+
+  geom_errorbar(aes(ymin=min,ymax=max),width=.1)+
+  scale_x_discrete(limits=c(1,2,3,4,5,6,7,8,9,10,11,12))+
+  theme(axis.text.x=element_text(size=rel(0.8)))+
+  facet_wrap(~Site, ncol=3)
+
+#### monthly summaries: cumulative measurements per month >5ppt
+
+sal$cnt=ifelse(sal$Salinity>5,1,0)
+
+sal_5ppt= sal %>%
+  group_by(year,month,Site) %>%
+  summarise(sum=sum(cnt))
+
+sal_5ppt$year=as.factor(sal_5ppt$year)
+sal_5ppt$Site=factor(sal_5ppt$Site,levels=c("6","1","7","5","2","8","4","3","9","10"))
+
+ggplot(sal_5ppt, aes(x=month,y=sum,shape=year,color=year))+
+  geom_point(size=2)+
+  labs(x="Month", y="Total Measurements >5ppt")+
+  scale_x_discrete(limits=c(1,2,3,4,5,6,7,8,9,10,11,12))+
+  theme(axis.text.x=element_text(size=rel(0.8)))+
+  facet_wrap(~Site, ncol=3)
 
 
