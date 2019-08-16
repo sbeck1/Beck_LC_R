@@ -36,3 +36,8 @@ sample(1:11,4,replace=F)
 #Quartile 3:  LTI6, BTI1, LTI5, LCI1
 #Quartile 4:  LCN7, BTI5, LCI2, BTI6
 
+# after building grids in Arc for selected reefs above (clip reef to fishnet label point file, add xy), 
+# randomly draw 4 points for each reef using code below.  In Arc select/export points, merge into single shapefile 
+
+sample(0:343,4,replace=F)
+
