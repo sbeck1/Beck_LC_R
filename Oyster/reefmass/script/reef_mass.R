@@ -37,7 +37,17 @@ sample(1:11,4,replace=F)
 #Quartile 4:  LCN7, BTI5, LCI2, BTI6
 
 # after building grids in Arc for selected reefs above (clip reef to fishnet label point file, add xy), 
-# randomly draw 4 points for each reef using code below.  In Arc select/export points, merge into single shapefile 
+# randomly draw 4 points for each reef using code below.  Extract/compile points, create final shapefile in Arc.
 
-sample(0:343,4,replace=F)
+grid=read.csv("oyster/reefmass/data/reefmass_grid.csv")
+
+#create station column
+grid$station=with(grid,paste0(Locality,Site,Bar))
+
+library(plyr)
+grid_draw=ddply(grid,.(station),function(x) x[sample(nrow(x),4),])
+
+
+
+
 
