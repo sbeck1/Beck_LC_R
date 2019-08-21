@@ -47,7 +47,7 @@ grid$station=with(grid,paste0(Locality,Site,Bar))
 library(plyr)
 grid_draw=ddply(grid,.(station),function(x) x[sample(nrow(x),4),])
 
-
+write.csv(grid_draw,"oyster/reefmass/data/grid_draw.csv")
 
 
 
