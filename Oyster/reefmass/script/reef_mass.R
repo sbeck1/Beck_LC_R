@@ -4,6 +4,8 @@ library(dplyr)
 
 #import Bill's file with compiled transect counts converted to densities for epoch 3
 trans=read.csv("oyster/transect/data/LC_transect_data_2018_2019.csv")
+
+#remove LCO, no reef mass samples on rocks
 trans2=trans %>%
   select(season:strata) %>%
   filter(!(locality=="LC" & site=="O"))
@@ -47,7 +49,16 @@ grid$station=with(grid,paste0(Locality,Site,Bar))
 library(plyr)
 grid_draw=ddply(grid,.(station),function(x) x[sample(nrow(x),4),])
 
+#only do this step once!  import exported file below to maintain original draw.
 write.csv(grid_draw,"oyster/reefmass/data/grid_draw.csv")
 
+#rename exported file above and import
+grid_draw2=read.csv("oyster/reefmass/data/grid_draw2.csv")
 
+#add labels for Arc
+grid_draw2$quadrat=seq(1,4)
 
+grid_draw2$label=with(grid_draw2,paste(station,quadrat),sep="-")
+
+#export for Arc
+write.csv(grid_draw2,"oyster/reefmass/data/grid_draw3.csv")
