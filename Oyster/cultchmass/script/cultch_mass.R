@@ -41,7 +41,7 @@ sample(1:11,4,replace=F)
 # after building grids in Arc for selected reefs above (clip reef to fishnet label point file, add xy), 
 # randomly draw 4 points for each reef using code below.  Extract/compile points, create final shapefile in Arc.
 
-grid=read.csv("oyster/reefmass/data/reefmass_grid.csv")
+grid=read.csv("oyster/reefmass/data/development/reefmass_grid.csv")
 
 #create station column
 grid$station=with(grid,paste0(Locality,Site,Bar))
@@ -50,10 +50,10 @@ library(plyr)
 grid_draw=ddply(grid,.(station),function(x) x[sample(nrow(x),4),])
 
 #only do this step once!  import exported file below to maintain original draw.
-write.csv(grid_draw,"oyster/reefmass/data/grid_draw.csv")
+write.csv(grid_draw,"oyster/reefmass/data/development/grid_draw.csv")
 
 #rename exported file above and import
-grid_draw2=read.csv("oyster/reefmass/data/grid_draw2.csv")
+grid_draw2=read.csv("oyster/reefmass/data/development/grid_draw2.csv")
 
 #add labels for Arc
 grid_draw2$quadrat=seq(1,4)
@@ -61,4 +61,4 @@ grid_draw2$quadrat=seq(1,4)
 grid_draw2$label=with(grid_draw2,paste(station,quadrat),sep="-")
 
 #export for Arc
-write.csv(grid_draw2,"oyster/reefmass/data/grid_draw3.csv")
+write.csv(grid_draw2,"oyster/reefmass/data/development/grid_draw3.csv")
