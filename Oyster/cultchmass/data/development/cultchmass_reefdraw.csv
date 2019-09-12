@@ -1,0 +1,17 @@
+"","season","treatment","locality","site","bar","station","count_live","tran_length","area","density","strata","quart"
+"1","Winter","control","BT","I","1","BTI1",897,23,3.51,255.91,"N_NA",3
+"5","Winter","control","BT","I","5","BTI5",3988,62.69,9.55,417.42,"N_NA",4
+"6","Winter","control","BT","I","6","BTI6",815.5,17.75,2.71,301.47,"N_NA",4
+"7","Winter","control","LC","I","1","LCI1",1650,45.39,6.92,238.53,"N_NA",3
+"10","Winter","control","LC","I","12","LCI12",1106,36.09,5.5,201.09,"Y_NA",2
+"17","Winter","control","LC","I","19","LCI19",153,22.21,3.38,45.2,"Y_NA",1
+"18","Winter","control","LC","I","2","LCI2",1534,32.2,4.91,312.6,"Y_NA",4
+"22","Winter","control","LC","I","6","LCI6",454,21.5,3.28,138.56,"Y_NA",2
+"24","Winter","control","LC","I","8","LCI8",96,19,2.9,33.15,"Y_NA",1
+"28","Winter","control","LC","N","3","LCN3",146,19.9,3.03,48.14,"Y_NA",1
+"32","Winter","control","LC","N","7","LCN7",611,13.3,2.03,301.44,"Y_NA",4
+"33","Winter","control","LC","N","8","LCN8",58,17.5,2.67,21.75,"Y_NA",1
+"35","Winter","control","LT","I","1","LTI1",692,29.8,4.54,152.37,"N_NA",2
+"39","Winter","control","LT","I","5","LTI5",1412,38.75,5.91,239.1,"N_NA",3
+"40","Winter","control","LT","I","6","LTI6",594,18.87,2.88,206.55,"N_NA",3
+"41","Winter","control","NN","I","1","NNI1",233.5,14.5,2.21,105.67,"N_NA",2
