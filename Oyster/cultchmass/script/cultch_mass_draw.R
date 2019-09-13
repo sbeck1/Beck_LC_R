@@ -34,9 +34,28 @@ sample(1:11,4,replace=F)
 
 #### Reef Draw:
 #Quartile 1:  LCI8, LCI19, LCN8, LCN3
-#Quartile 2:  LCI12, LTI1, NNI1, LCI6
+#Quartile 2:  LCI6, LTI1, NNI1, LCI2
 #Quartile 3:  LTI6, BTI1, LTI5, LCI1
-#Quartile 4:  LCN7, BTI5, LCI2, BTI6
+#Quartile 4:  LCN7, BTI5, BTI6, LCI2
+
+trans3=trans2[which(trans2$station=="LCI8"|
+                      trans2$station=="LCI19"|
+                      trans2$station=="LCN8"|
+                      trans2$station=="LCN3"|
+                      trans2$station=="LCI12"|
+                      trans2$station=="LTI1"|
+                      trans2$station=="NNI1"|
+                      trans2$station=="LCI6"|
+                      trans2$station=="LTI6"|
+                      trans2$station=="BTI1"|
+                      trans2$station=="LTI5"|
+                      trans2$station=="LCI1"|
+                      trans2$station=="LCN7"|
+                      trans2$station=="BTI5"|
+                      trans2$station=="BTI6"|
+                      trans2$station=="LCI2"),]
+write.csv(trans3,"oyster/cultchmass/data/development/cultchmass_reefdraw.csv")
+
 
 # after building grids in Arc for selected reefs above (clip reef to fishnet label point file, add xy), 
 # randomly draw 4 points for each reef using code below.  Extract/compile points, create final shapefile in Arc.
@@ -62,3 +81,9 @@ grid_draw2$label=with(grid_draw2,paste(station,quadrat),sep="-")
 
 #export for Arc
 write.csv(grid_draw2,"oyster/cultchmass/data/development/grid_draw3.csv")
+
+# Had to fix issue with LCI2 (Definitely should be Quartile 4, not 2...got swapped in Arc)
+
+
+
+
