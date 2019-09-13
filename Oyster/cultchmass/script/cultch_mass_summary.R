@@ -84,23 +84,23 @@ tot_dens2=tot_dens2[order(tot_dens2$quart),]
 
 par(mfrow=c(1,3))
 sm_d_vs_m=lm(sm_dens$density~sm_dens$total_kg)
-plot(sm_dens$total_kg, sm_dens$density, xlab="Total Small Cultch Mass (kg)", 
+plot(sm_dens$total_kg, sm_dens$density, xlab="Small Cultch Mass (kg) 5-10cm", 
      ylab="Oyster Density (per sq m)", ylim=c(0,500), xlim=c(0,20),
      main="4 Quadrats Per Station",
-     pch=16, col=sm_dens$quart)
+     pch=sm_dens$quart)
 abline(sm_d_vs_m)
-legend("top",legend=c(1:4),pch=16,col=sm_dens$quart,title="Quartile")
+legend("top",legend=c(1:4),pch=sm_dens$quart,title="Quartile")
 
 lg_d_vs_m=lm(lg_dens$density~lg_dens$total_kg)
-plot(lg_dens$total_kg, lg_dens$density, xlab="Total Large Cultch Mass (kg)", 
+plot(lg_dens$total_kg, lg_dens$density, xlab="Large Cultch Mass (kg) >10cm", 
      ylim=c(0,500), xlim=c(0,20),
-     ylab="",pch=16, col=sm_dens$quart)
+     ylab="",pch=sm_dens$quart)
 abline(lg_d_vs_m)
 
 tot_d_vs_m=lm(tot_dens$density~tot_dens$total_kg)
-plot(tot_dens$total_kg, tot_dens$density, xlab="Total Cultch Mass (kg)", 
+plot(tot_dens$total_kg, tot_dens$density, xlab="Total Cultch Mass (kg) >5cm", 
      ylim=c(0,500), xlim=c(0,20),
-     ylab="",pch=16, col=sm_dens$quart)
+     ylab="",pch=sm_dens$quart)
 abline(tot_d_vs_m)
 
 dev.copy2pdf(file="oyster/cultchmass/fig/CultchMass_v_Density_4Quad.pdf")
@@ -109,23 +109,23 @@ dev.copy2pdf(file="oyster/cultchmass/fig/CultchMass_v_Density_4Quad.pdf")
 
 par(mfrow=c(1,3))
 sm_d_vs_m2=lm(sm_dens$density~sm_dens2$total_kg)
-plot(sm_dens2$total_kg, sm_dens2$density, xlab="Total Small Cultch Mass (kg)", 
+plot(sm_dens2$total_kg, sm_dens2$density, xlab="Small Cultch Mass (kg) 5-10cm", 
      ylab="Oyster Density (per sq m)", ylim=c(0,500), xlim=c(0,20),
      main="2 Quadrats Per Station",
-     pch=16, col=sm_dens2$quart)
+     pch=sm_dens2$quart)
 abline(sm_d_vs_m2)
-legend("top",legend=c(1:4),pch=16,col=sm_dens2$quart,title="Quartile")
+legend("top",legend=c(1:4),pch=sm_dens2$quart,title="Quartile")
 
 lg_d_vs_m2=lm(lg_dens2$density~lg_dens2$total_kg)
-plot(lg_dens2$total_kg, lg_dens2$density, xlab="Total Large Cultch Mass (kg)", 
+plot(lg_dens2$total_kg, lg_dens2$density, xlab="Large Cultch Mass (kg) >10cm", 
      ylim=c(0,500), xlim=c(0,20),
-     ylab="",pch=16, col=sm_dens2$quart)
+     ylab="",pch=sm_dens2$quart)
 abline(lg_d_vs_m2)
 
 tot_d_vs_m2=lm(tot_dens2$density~tot_dens2$total_kg)
-plot(tot_dens2$total_kg, tot_dens2$density, xlab="Total Cultch Mass (kg)", 
+plot(tot_dens2$total_kg, tot_dens2$density, xlab="Total Cultch Mass (kg) >5cm", 
      ylim=c(0,500), xlim=c(0,20),
-     ylab="",pch=16, col=sm_dens$quart)
+     ylab="",pch=sm_dens$quart)
 abline(tot_d_vs_m2)
 
 dev.copy2pdf(file="oyster/cultchmass/fig/CultchMass_v_Density_2Quad.pdf")
@@ -141,20 +141,14 @@ summary(tot_d_vs_m2)
 
 ### Boxplots:
 
-### 4 Quadrats
-
-par(mfrow=c(1,3))
-boxplot(small$total_kg,data=small,xlab="Small (5-10cm)",ylab="Total Cultch Mass (kg)",ylim=c(0,20),main="4 Quadrats per Station" )
+par(mfrow=c(2,3))
+boxplot(small$total_kg,data=small,xlab="Small (5-10cm)",ylab="Cultch Mass (kg)",ylim=c(0,20),main="4 Quadrats per Station" )
 boxplot(large$total_kg,data=large,xlab="Large (>10cm)",ylim=c(0,20))
 boxplot(total$total_kg,data=total,xlab="Total (>5cm)",ylim=c(0,20))
-
-dev.copy2pdf(file="oyster/cultchmass/fig/CultchMass_box_4Quad.pdf")
-
-### 2 Quadrats
-
-par(mfrow=c(1,3))
-boxplot(small2$total_kg,data=small2,xlab="Small (5-10cm)",ylab="Total Cultch Mass (kg)",ylim=c(0,20),main="2 Quadrats per Station" )
+boxplot(small2$total_kg,data=small2,xlab="Small (5-10cm)",ylab="Cultch Mass (kg)",ylim=c(0,20),main="2 Quadrats per Station" )
 boxplot(large2$total_kg,data=large2,xlab="Large (>10cm)",ylim=c(0,20))
 boxplot(total2$total_kg,data=total2,xlab="Total (>5cm)",ylim=c(0,20))
 
-dev.copy2pdf(file="oyster/cultchmass/fig/CultchMass_box_2Quad.pdf")
+### once more data collected set up figures by harvest strata
+
+
