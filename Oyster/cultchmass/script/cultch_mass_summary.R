@@ -47,8 +47,6 @@ tot_dens=merge(total,reefs,by=c("station","quart"))
 tot_dens=tot_dens[order(tot_dens$quart),]
 
 
-
-
 #### Repeat the above using the first two quadrats to compare two vs four quadrats per station ####
 cultch2=cultch[which(cultch$quadrat==1|cultch$quadrat==2),]
 
@@ -148,6 +146,38 @@ boxplot(total$total_kg,data=total,xlab="Total (>5cm)",ylim=c(0,20))
 boxplot(small2$total_kg,data=small2,xlab="Small (5-10cm)",ylab="Cultch Mass (kg)",ylim=c(0,20),main="2 Quadrats per Station" )
 boxplot(large2$total_kg,data=large2,xlab="Large (>10cm)",ylim=c(0,20))
 boxplot(total2$total_kg,data=total2,xlab="Total (>5cm)",ylim=c(0,20))
+
+
+### Plots maintaining individual quadrats per Bill:
+cultch_dens=merge(cultch,reefs,by=c("station"))
+cultch_dens=cultch_dens[order(cultch_dens$quart),]
+
+par(mfrow=c(1,3))
+plot(cultch_dens$density, cultch_dens$sm, xlab="", 
+     ylab="Small Cultch Mass (kg) 5-10cm", ylim=c(0,10), xlim=c(0,500),
+     pch=cultch_dens$quart)
+
+plot(cultch_dens$density, cultch_dens$lg, xlab="Oyster Density (per sq m)", 
+     ylab="Large Cultch Mass (kg) >10cm", ylim=c(0,10), xlim=c(0,500),
+     pch=cultch_dens$quart)
+legend("top",legend=c(1,2,3,4),pch=c(1,2,3,4),title="Density Quartile")
+
+plot(cultch_dens$density, cultch_dens$tot, xlab="", 
+     ylab="Total Cultch Mass (kg) >5cm", ylim=c(0,10), xlim=c(0,500),
+     pch=cultch_dens$quart)
+
+dev.copy2pdf(file="oyster/cultchmass/fig/CultchMass_v_Density_raw.pdf")
+
+### plot of Small v Large cultch relationship per Bill
+
+par(mfrow=c(1,1),pty="s")
+plot(cultch_dens$sm, cultch_dens$lg, xlab="Small Cultch Mass (kg) 5-10cm", 
+     ylab="Large Cultch Mass (kg) >10cm", ylim=c(0,10), xlim=c(0,10),
+     pch=cultch_dens$quart)
+legend("top",legend=c(1,2,3,4),pch=c(1,2,3,4),title="Density Quartile",cex=0.6)
+
+dev.copy2pdf(file="oyster/cultchmass/fig/Sm_v_Lg_cultchmass.pdf")
+
 
 ### once more data collected set up figures by harvest strata
 
