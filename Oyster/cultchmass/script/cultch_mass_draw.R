@@ -57,30 +57,28 @@ trans3=trans2[which(trans2$station=="LCI8"|
 write.csv(trans3,"oyster/cultchmass/data/development/cultchmass_reefdraw.csv")
 
 
-# after building grids in Arc for selected reefs above (clip reef to fishnet label point file, add xy), 
+# after building grids in Arc for selected reefs above (start with LC_reefmass.mxd, clip reef to fishnet label point file, add xy), 
 # randomly draw 4 points for each reef using code below.  Extract/compile points, create final shapefile in Arc.
 
-grid=read.csv("oyster/cultchmass/data/development/reefmass_grid.csv")
+grid=read.csv("oyster/cultchmass/data/development/reefmass_grid2.csv")
 
 #create station column
 grid$station=with(grid,paste0(Locality,Site,Bar))
 
 library(plyr)
-grid_draw=ddply(grid,.(station),function(x) x[sample(nrow(x),4),])
-
+grid_draw=ddply(grid,.(station),function(x) x[sample(nrow(x),3),])
 #only do this step once!  import exported file below to maintain original draw.
-write.csv(grid_draw,"oyster/cultchmass/data/development/grid_draw.csv")
 
 #rename exported file above and import
-grid_draw2=read.csv("oyster/cultchmass/data/development/grid_draw2.csv")
+grid_draw2=read.csv("oyster/cultchmass/data/development/grid_draw.csv")
 
 #add labels for Arc
-grid_draw2$quadrat=seq(1,4)
+grid_draw2$quadrat=seq(1,3)
 
 grid_draw2$label=with(grid_draw2,paste(station,quadrat),sep="-")
 
 #export for Arc
-write.csv(grid_draw2,"oyster/cultchmass/data/development/grid_draw3.csv")
+write.csv(grid_draw2,"oyster/cultchmass/data/development/grid_draw.csv")
 
 # Had to fix issue with LCI2 (Definitely should be Quartile 4, not 2...got swapped in Arc)
 
