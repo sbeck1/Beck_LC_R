@@ -4,7 +4,7 @@ library (plotly)
 library(plotrix)
 library(tidyr)
 
-tile_spat=read.csv("oyster/spat/data/production/201910_tile_spat_count.csv")
+tile_spat=read.csv("oyster/spat/data/production/202001_tile_spat_count.csv")
 tile_spat2=tile_spat[which(tile_spat$cnt>=0),]  #only include retrieved tiles
 
 mo2num=function(x) match(tolower(x),tolower(month.name))  #month name to month number
@@ -28,11 +28,13 @@ tile_summary2 = tile_spat2 %>%
 tile_summary2$type="TILE"
 str(tile_summary2)
 
+
 #convert to relative totals
 #tile_summary2$rel_total=tile_summary2$total/(max(tile_summary2$total))
 tile_summary2=tile_summary2 %>% 
   group_by(year,month_num) %>% 
-  mutate (rel_total=total/max(total))
+  mutate (rel_total=total/sum(total))
+tile_summary2=tile_summary2[with(tile_summary2,order(year,month_num,station)),]
 
 #change NaN to zero (occurs where total spat equal zero for all stations in a given month)
 tile_summary2[is.na(tile_summary2)] = 0
@@ -46,7 +48,8 @@ ggplot(tile_summary2, aes(x=month_num,y=total,shape=year))+
   labs(title="Tile Spat Collectors:  Total Spat by Station/Month/Year",x="Month", y="Spat Count per Tile")+
   facet_wrap(~station, ncol=3)+
   theme(axis.text.x=element_text(size=rel(0.8)))+
-  scale_x_discrete(limits=c("1","2","3","4","5","6","7","8","9","10","11","12"))
+  scale_x_discrete(limits=c("1","2","3","4","5","6","7","8","9","10","11","12"))+
+  ylim(-20,1500)
 
 dev.copy2pdf(file="oyster/spat/fig/tile_spat_total.pdf")
 
@@ -56,7 +59,8 @@ ggplot(tile_summary2, aes(x=month_num,y=rel_total,shape=year))+
   labs(title="Tile Spat Collectors:  Relative Total Spat by Station/Month/Year",x="Month", y="Monthly Relative Spat Count per Tile")+
   facet_wrap(~station, ncol=3)+
   theme(axis.text.x=element_text(size=rel(0.8)))+
-  scale_x_discrete(limits=c("1","2","3","4","5","6","7","8","9","10","11","12"))
+  scale_x_discrete(limits=c("1","2","3","4","5","6","7","8","9","10","11","12"))+
+  ylim(-.02,1.02)
 
 dev.copy2pdf(file="oyster/spat/fig/rel_tile_spat_total.pdf")
 
@@ -68,7 +72,8 @@ ggplot(tile_summary2, aes(x=month_num,y=total,shape=year))+
   labs(x="Month", y="Spat Count per Tile")+
   facet_wrap(~station, ncol=3)+
   theme(axis.text.x=element_text(size=rel(0.8)))+
-  scale_x_discrete(limits=c("1","2","3","4","5","6","7","8","9","10","11","12"))
+  scale_x_discrete(limits=c("1","2","3","4","5","6","7","8","9","10","11","12"))+
+  ylim(-20,1500)
 
 dev.copy2pdf(file="oyster/spat/report/report_fig/rep_tile_spat_total.pdf")
 
@@ -78,7 +83,8 @@ ggplot(tile_summary2, aes(x=month_num,y=rel_total,shape=year))+
   labs(x="Month", y="Monthly Relative Spat Count per Tile")+
   facet_wrap(~station, ncol=3)+
   theme(axis.text.x=element_text(size=rel(0.8)))+
-  scale_x_discrete(limits=c("1","2","3","4","5","6","7","8","9","10","11","12"))
+  scale_x_discrete(limits=c("1","2","3","4","5","6","7","8","9","10","11","12"))+
+  ylim(-.02,1.02)
 
 dev.copy2pdf(file="oyster/spat/report/report_fig/rep_rel_tile_spat_total.pdf")
 
