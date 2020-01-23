@@ -1,6 +1,6 @@
 ##### Basic Salinity Summaries #####
 
-wq=read.csv("wq/data/production/20190719_wq.csv")
+wq=read.csv("wq/data/production/20200123_wq.csv")
 
 library(ggplot2)
 library(dplyr)
@@ -266,7 +266,7 @@ temp_merge=merge(temp_m,temp_range,by=c("year","month","Site"))
 temp_merge=plyr::rename(temp_merge,c("mean"="temp_mean","min"="temp_min","max"="temp_max"))
 
 
-#merge sal and temp files to combibe with spat data
+#merge sal and temp files to combine with spat data
 
 sal_temp=merge(temp_merge,sal_merge,by=c("year","month","Site"))
 write.csv(sal_temp,"wq/data/development/sal_temp.csv")
