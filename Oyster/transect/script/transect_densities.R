@@ -97,6 +97,11 @@ dta3$density = dta3$count_live/dta3$area
 
 ####Jan 7 2020: just need harvest/no rock strata (Y_NA) behind deer island for cultch mass sampling. No flooded transects to affect densities.
 mass_reefs=dta3[which(dta3$locality=="LC"&dta3$site!="O"),]
-mass_reefs2=mass_reefs[-which(mass_reefs$station=="LCI23"|mass_reefs$station=="LCI24"),]
-write.csv(mass_reefs2,"oyster/cultchmass/data/development/trans_dens_2019_2020.csv")
+mass_reefs2=mass_reefs[-which(mass_reefs$station=="LCI23"|mass_reefs$station=="LCI24"|mass_reefs$station=="LCI28"),]
+####Jan 24 2020: just need nonharvest/no rock strata (N_NA)cultch mass sampling.
+mass_reefs3=dta3[which(dta3$locality=="BT"|dta3$locality=="LT"|dta3$locality=="NN"|dta3$station=="LCI24"|dta3$station=="LCI23"|dta3$station=="LCI28"|dta3$station=="LCI29"|dta3$station=="LCI30"),]
+
+write.csv(mass_reefs2,"oyster/cultchmass/data/development/Y_NA_trans_dens_2019_2020.csv")
+
+write.csv(mass_reefs3,"oyster/cultchmass/data/development/N_NA_trans_dens_2019_2020.csv")
 
