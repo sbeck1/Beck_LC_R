@@ -11,3 +11,8 @@ September 25, 2018:  Created error check scripts
 Need to doublecheck calculations, input coordinates/check mapping options. 
 
 June 12-13, 2019:  Updating tile figure format, begin write-up.
+
+Feb 2020:  GAMs:  I processed the WQ data to create some monthly metrics meaningful to oyster reproduction/ecology:
+				-number of measurements where salinty >5ppt (gametogenesis thought to be impaired below 5ppt)
+				-number of measurements where temperature >25C (start of gametogenesis)
+				-number of measurements where salinity >15ppt (high salinity boundary of oyster production zones in LA due to predation/disease)  
